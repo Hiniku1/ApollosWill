@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/components/ender/Ender.tsx?browser"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/components/ender/Ender.tsx\";"],
+  "mappings": ";;;;;;;;AAAA;",
+  "names": []
+}

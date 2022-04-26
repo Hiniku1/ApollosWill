@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/components/Carousel/Carousel.tsx?browser", "../../../../../app/routes/components/Carousel/Carousel.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/components/Carousel/Carousel.tsx\";", "export default function Carousel(){\n    return (\n        <div></div>\n    )\n}"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,oBAAmB;AAC9B,SACI,oCAAC,OAAD;AAAA;",
+  "names": []
+}

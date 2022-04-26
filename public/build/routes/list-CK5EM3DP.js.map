@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/list.tsx?browser", "../../../app/routes/list.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/list.tsx\";", "import { Link } from \"@remix-run/react\";\nimport Navbar from \"./components/Navbar/Navbar\";\n\n\n\nexport default function List() {\n    return (\n        <div>\n            <Navbar />\n            <div className=\"w-screen h-[425px] flex justify-center items-center \">\n                <div className=\"flex items-center\">\n                    <div className=\"flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10\">\n                        <Link to=\"/list\"><img className=\"rounded-3xl w-[100px]\" src={require(\"public/imgs/Icon.jpg\")} alt=\"Icon\" /></Link>\n                    </div>\n                </div>\n            </div>\n        </div>\n    )\n}"],
+  "mappings": ";;;;;;;;;;;;;AAAA;;;ACAA;AAKe,gBAAgB;AAC3B,SACI,oCAAC,OAAD,MACI,oCAAC,QAAD,OACA,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,MAAD;AAAA,IAAM,IAAG;AAAA,KAAQ,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,IAAwB,KAAK;AAAA,IAAiC,KAAI;AAAA;AAAA;",
+  "names": []
+}

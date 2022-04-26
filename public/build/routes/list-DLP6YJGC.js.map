@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/list.tsx?browser", "../../../app/routes/list.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/list.tsx\";", "export default function List(){\n    return(\n        <div>\n            \n        </div>\n    )\n}"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,gBAAe;AAC1B,SACI,oCAAC,OAAD;AAAA;",
+  "names": []
+}

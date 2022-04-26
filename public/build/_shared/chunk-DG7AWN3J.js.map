@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/components/ender/Ender.tsx"],
+  "sourcesContent": ["export default function Ender(){\n    return(\n        <div>\n            \n        </div>\n    )\n}"],
+  "mappings": ";;;;;;AAAA;AAAe,iBAAgB;AAC3B,SACI,oCAAC,OAAD;AAAA;",
+  "names": []
+}

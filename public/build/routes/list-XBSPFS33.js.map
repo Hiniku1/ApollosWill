@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/list.tsx?browser", "../../../app/routes/list.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/list.tsx\";", "import Navbar from \"./components/Navbar/Navbar\";\n\n\n\nexport default function List(){\n    return(\n        <div>\n            <Navbar/>\n        </div>\n    )\n}"],
+  "mappings": ";;;;;;;;;;AAAA;;;ACAA;AAIe,gBAAe;AAC1B,SACI,oCAAC,OAAD,MACI,oCAAC,QAAD;AAAA;",
+  "names": []
+}

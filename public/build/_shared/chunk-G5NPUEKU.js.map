@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/components/anime_season/Season.tsx"],
+  "sourcesContent": ["export default function Season() {\n    return (\n        <div>\n            \n            \n        </div>\n    )\n}"],
+  "mappings": ";;;;;;AAAA;AAAe,kBAAkB;AAC7B,SACI,oCAAC,OAAD;AAAA;",
+  "names": []
+}

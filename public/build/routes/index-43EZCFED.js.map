@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/index.tsx\";", "import News from \"./components/News/News\";\nimport Navbar from \"./components/Navbar/Navbar\";\n\nexport default function Index() {\n  return (\n    <div className=\"bg-smooth-pink\">\n      <Navbar />\n      \n      {/* the div where the News carousel goes */}\n      <div className=\"w-screen h-[500px] flex items-center justify-center\">\n        <div className=\"w-[900px] h-[350px] flex\">\n            <News/>\n        </div>\n      </div>\n\n      {/* the div where the Season Animes goes */}\n      <div className=\"w-screen h-full\">\n        Pee\n      </div>\n\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAGe,iBAAiB;AAC9B,SACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,QAAD,OAGA,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,MAAD,SAKN,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KAAkB;AAAA;",
+  "names": []
+}

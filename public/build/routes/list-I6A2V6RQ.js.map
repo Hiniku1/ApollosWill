@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/list.tsx?browser", "../../../app/routes/list.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/list.tsx\";", "import { Link } from \"@remix-run/react\";\nimport Navbar from \"./components/Navbar/Navbar\";\n\n\n\nexport default function List() {\n    return (\n        <div>\n            <div className=\"w-screen h-[425px] flex justify-center items-center\">\n                <img className=\"w-full h-full -z-10\" src={require(\"public/imgs/Wallpaper.jpeg\")} alt=\"Wallpaper\"/>\n                \n            </div>\n        </div>\n    )\n}"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;;;ACAA;AAKe,gBAAgB;AAC3B,SACI,oCAAC,OAAD,MACI,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,IAAsB,KAAK;AAAA,IAAuC,KAAI;AAAA;AAAA;",
+  "names": []
+}

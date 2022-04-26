@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/index.tsx\";", "import Navbar from \"./components/Navbar/Navbar\";\n\nexport default function Index() {\n  return (\n    <div className=\"bg-smooth-pink\">\n        <Navbar />\n        \n      PEE\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;AAAA;;;ACAA;AAEe,iBAAiB;AAC9B,SACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,QAAD,OAAU;AAAA;",
+  "names": []
+}

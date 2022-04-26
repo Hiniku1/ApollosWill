@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/list.tsx?browser", "../../../app/routes/list.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/list.tsx\";", "import { Link } from \"@remix-run/react\";\nimport Navbar from \"./components/Navbar/Navbar\";\n\n\n\nexport default function List() {\n    return (\n        <div className=\"bg-smooth-pink\">\n            <img className=\"w-screen h-[500px] -z-10 -mb-32\" src={require(\"public/imgs/Wallpaper.jpeg\")} alt=\"Wallpaper\" />\n            <div className=\"h-full w-full flex justify-center items-center\">\n                {/* Icon */}\n                <div className=\"flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center\">\n                    <Link to=\"/list\"><img className=\"rounded-3xl w-[150px]\" src={require(\"public/imgs/Icon.jpg\")} alt=\"Icon\" /></Link>\n                </div>\n            </div>\n            <h1 className=\"font-quicksand 4xl flex justify-center\">User_Name</h1>\n        </div>\n    )\n}"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;AAAA;;;ACAA;AAKe,gBAAgB;AAC3B,SACI,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,IAAkC,KAAK;AAAA,IAAuC,KAAI;AAAA,MACjG,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KAEX,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,MAAD;AAAA,IAAM,IAAG;AAAA,KAAQ,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,IAAwB,KAAK;AAAA,IAAiC,KAAI;AAAA,SAG1G,oCAAC,MAAD;AAAA,IAAI,WAAU;AAAA,KAAyC;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/index.tsx\";", "import News from \"./components/News/News\";\nimport Navbar from \"./components/Navbar/Navbar\";\n\nexport default function Index() {\n  return (\n    <div className=\"bg-smooth-pink\">\n      <Navbar />\n      <div className=\"w-screen h-[500px] flex items-center justify-center\">\n        \n        <div className=\"w-[900px] h-[350px] bg-smooth-blue flex\">\n            <News/>\n        </div>\n\n        <div>\n          \n        </div>\n\n      </div>\n\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAGe,iBAAiB;AAC9B,SACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,QAAD,OACA,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KAEb,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACX,oCAAC,MAAD,QAGJ,oCAAC,OAAD;AAAA;",
+  "names": []
+}

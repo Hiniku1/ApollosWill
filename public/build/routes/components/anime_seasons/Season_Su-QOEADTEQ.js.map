@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_Su.tsx?browser", "../../../../../app/routes/components/anime_seasons/Season_Su.tsx"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_Su.tsx\";", "export default function Season_Su(){\n    return(\n        <div></div>\n    )\n}"],
+  "mappings": ";;;;;;AAAA;;;ACAA;AAAe,qBAAoB;AAC/B,SACI,oCAAC,OAAD;AAAA;",
+  "names": []
+}
