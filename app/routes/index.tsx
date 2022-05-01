@@ -27,8 +27,6 @@ export default function Index() {
     },
   });
   
-
-    console.log(data["findAnimeById"])
   return (
     <div className="bg-smooth-pink">
       
