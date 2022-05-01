@@ -20,13 +20,19 @@ const GetPosterById = gql`
   }
 `;
 
+
+
 export default function Index() {
-  const { data } = useQuery(GetPosterById, {
+  const { loading, error, data } = useQuery(GetPosterById, {
     variables: {
       id: 1,
     },
   });
   
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+
   return (
     <div className="bg-smooth-pink">
       
