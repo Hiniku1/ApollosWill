@@ -143,21 +143,48 @@ var entry_server_exports = {};
 __export(entry_server_exports, {
   default: () => handleRequest
 });
-var import_react = require("@remix-run/react");
 var import_server = require("react-dom/server");
+var import_react2 = require("@remix-run/react");
+
+// app/context/apollo.tsx
+var import_react = require("react");
+var import_client = require("@apollo/client");
+var isBrowser = typeof window !== "undefined";
+var initialState = isBrowser ? window.__INITIAL_STATE__ : {};
+function initApollo(ssrMode = true) {
+  return new import_client.ApolloClient({
+    uri: "https://kitsu.io/api/graphql",
+    cache: new import_client.InMemoryCache().restore(initialState),
+    ssrMode
+  });
+}
+var apollo_default = (0, import_react.createContext)(initialState);
+
+// app/entry.server.tsx
+var import_client2 = require("@apollo/client");
+var import_ssr = require("@apollo/client/react/ssr");
 function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
-  let markup = (0, import_server.renderToString)(/* @__PURE__ */ React.createElement(import_react.RemixServer, {
+  const client = initApollo();
+  const App2 = /* @__PURE__ */ React.createElement(import_client2.ApolloProvider, {
+    client
+  }, /* @__PURE__ */ React.createElement(import_react2.RemixServer, {
     context: remixContext,
     url: request.url
   }));
-  responseHeaders.set("Content-Type", "text/html");
-  return new Response("<!DOCTYPE html>" + markup, {
-    status: responseStatusCode,
-    headers: responseHeaders
+  return (0, import_ssr.getDataFromTree)(App2).then(() => {
+    const initialState2 = client.extract();
+    const markup = (0, import_server.renderToString)(/* @__PURE__ */ React.createElement(apollo_default.Provider, {
+      value: initialState2
+    }, App2));
+    responseHeaders.set("Content-Type", "text/html");
+    return new Response("<!DOCTYPE html>" + markup, {
+      status: responseStatusCode,
+      headers: responseHeaders
+    });
   });
 }
 
-// route:/home/hiniku/apolloswill/app/root.tsx
+// route:/home/hiniku/ApollosWill/app/root.tsx
 var root_exports = {};
 __export(root_exports, {
   default: () => App,
@@ -168,8 +195,8 @@ __export(root_exports, {
 // app/styles/tailwind.css
 var tailwind_default = "/build/_assets/tailwind-33SB6CTZ.css";
 
-// route:/home/hiniku/apolloswill/app/root.tsx
-var import_react2 = require("@remix-run/react");
+// route:/home/hiniku/ApollosWill/app/root.tsx
+var import_react3 = require("@remix-run/react");
 var meta = () => ({
   charset: "utf-8",
   title: "Apollo's Will",
@@ -181,10 +208,10 @@ var links = () => [
 function App() {
   return /* @__PURE__ */ React.createElement("html", {
     lang: "en"
-  }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react2.Meta, null), /* @__PURE__ */ React.createElement(import_react2.Links, null)), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(import_react2.Outlet, null), /* @__PURE__ */ React.createElement(import_react2.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react2.Scripts, null), /* @__PURE__ */ React.createElement(import_react2.LiveReload, null)));
+  }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react3.Meta, null), /* @__PURE__ */ React.createElement(import_react3.Links, null)), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(import_react3.Outlet, null), /* @__PURE__ */ React.createElement(import_react3.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react3.Scripts, null), /* @__PURE__ */ React.createElement(import_react3.LiveReload, null)));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/anime_cards/anime_cards_list.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_cards/anime_cards_list.tsx
 var anime_cards_list_exports = {};
 __export(anime_cards_list_exports, {
   default: () => Anime_Cards_List
@@ -283,7 +310,7 @@ function Anime_Cards_List() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_Sp.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Sp.tsx
 var Season_Sp_exports = {};
 __export(Season_Sp_exports, {
   default: () => Season_F
@@ -418,7 +445,7 @@ function Season_F() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_Su.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Su.tsx
 var Season_Su_exports = {};
 __export(Season_Su_exports, {
   default: () => Season_Su
@@ -553,7 +580,7 @@ function Season_Su() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_F.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_F.tsx
 var Season_F_exports = {};
 __export(Season_F_exports, {
   default: () => Season_F2
@@ -688,7 +715,7 @@ function Season_F2() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/anime_seasons/Season_W.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_W.tsx
 var Season_W_exports = {};
 __export(Season_W_exports, {
   default: () => Season
@@ -823,12 +850,12 @@ function Season() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/navbar/Navbar.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/navbar/Navbar.tsx
 var Navbar_exports = {};
 __export(Navbar_exports, {
   default: () => Navbar
 });
-var import_react3 = require("@remix-run/react");
+var import_react4 = require("@remix-run/react");
 function Navbar() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[75px] z-10 bg-smooth-blue"
@@ -836,7 +863,7 @@ function Navbar() {
     className: "px-2 flex justify-between items-center w-full h-full"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
     to: "/"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "font-quicksand mr-4 text-[24px]"
@@ -848,7 +875,7 @@ function Navbar() {
     className: "pr-4"
   }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[100px]",
@@ -857,7 +884,7 @@ function Navbar() {
   }))))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/ender/Ender.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/ender/Ender.tsx
 var Ender_exports = {};
 __export(Ender_exports, {
   default: () => Ender
@@ -868,7 +895,7 @@ function Ender() {
   }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/components/news/News.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/news/News.tsx
 var News_exports = {};
 __export(News_exports, {
   default: () => News
@@ -939,7 +966,7 @@ function News() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/index.tsx
+// route:/home/hiniku/ApollosWill/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
   default: () => Index
@@ -1013,7 +1040,7 @@ function News2() {
 }
 
 // app/routes/components/navbar/Navbar.tsx
-var import_react4 = require("@remix-run/react");
+var import_react5 = require("@remix-run/react");
 function Navbar2() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[75px] z-10 bg-smooth-blue"
@@ -1021,7 +1048,7 @@ function Navbar2() {
     className: "px-2 flex justify-between items-center w-full h-full"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react5.Link, {
     to: "/"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "font-quicksand mr-4 text-[24px]"
@@ -1033,7 +1060,7 @@ function Navbar2() {
     className: "pr-4"
   }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react5.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[100px]",
@@ -1573,11 +1600,29 @@ function Ender2() {
   }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/index.tsx
+// route:/home/hiniku/ApollosWill/app/routes/index.tsx
+var import_client3 = require("@apollo/client");
+var GetPosterById = import_client3.gql`
+  query poster($id: ID!) {
+    findAnimeById(id: $id) {
+      bannerImage {
+        original {
+          url
+        }
+      }
+    }
+  }
+`;
 function Index() {
+  const { data } = (0, import_client3.useQuery)(GetPosterById, {
+    variables: {
+      id: 1
+    }
+  });
+  console.log(data["findAnimeById"]);
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
-  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("div", null, JSON.stringify(data)), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[500px] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "w-[900px] h-[350px] flex"
@@ -1616,12 +1661,12 @@ function Index() {
   }, /* @__PURE__ */ React.createElement(Season_F4, null)))), /* @__PURE__ */ React.createElement(Ender2, null));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/list.tsx
+// route:/home/hiniku/ApollosWill/app/routes/list.tsx
 var list_exports = {};
 __export(list_exports, {
   default: () => List
 });
-var import_react5 = require("@remix-run/react");
+var import_react6 = require("@remix-run/react");
 
 // app/routes/components/anime_cards/anime_cards_list.tsx
 function Anime_Cards_List2() {
@@ -1718,7 +1763,7 @@ function Anime_Cards_List2() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// route:/home/hiniku/apolloswill/app/routes/list.tsx
+// route:/home/hiniku/ApollosWill/app/routes/list.tsx
 function List() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
@@ -1730,7 +1775,7 @@ function List() {
     className: "h-full w-full flex justify-center items-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center"
-  }, /* @__PURE__ */ React.createElement(import_react5.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react6.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[150px]",
@@ -1758,7 +1803,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "f7e143f5", "entry": { "module": "/build/entry.client-6HIS5IWM.js", "imports": ["/build/_shared/chunk-WN3GOTRZ.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-O6FJFSOC.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-7QJA35FB.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-XG4WZ5ZH.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-6O2ZKVX3.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-4FUZGVVJ.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-XJNJIOMM.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-BKTHR4YF.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-E7VZF76N.js", "imports": ["/build/_shared/chunk-OJNG5YQI.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-BMMNPYST.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-RPASBMSL.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-OJNG5YQI.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-6AILQXLS.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-F7E143F5.js" };
+var assets_manifest_default = { "version": "e88496ea", "entry": { "module": "/build/entry.client-RE566BQE.js", "imports": ["/build/_shared/chunk-TUGPCD65.js", "/build/_shared/chunk-4QVVR2OG.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-DRACZQNB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-JNLWYNRK.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-H2BCFB33.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-D5DXLOJB.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-PLY4ZVKS.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-B3EQFFV4.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-5FFAFQ36.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-PBC3WU4I.js", "imports": ["/build/_shared/chunk-OHGLGSUJ.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-OX7ZRYOS.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-Q72QAFU7.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-OHGLGSUJ.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-A43BBCHF.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-E88496EA.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

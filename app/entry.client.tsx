@@ -1,4 +1,16 @@
-import { RemixBrowser } from "@remix-run/react";
+import { ApolloProvider } from "@apollo/client";
 import { hydrate } from "react-dom";
+import { RemixBrowser } from "@remix-run/react";
+import { initApollo } from "./context/apollo";
 
-hydrate(<RemixBrowser />, document);
+function Client() {
+  const client = initApollo(false);
+
+  return (
+    <ApolloProvider client={client}>
+      <RemixBrowser />
+    </ApolloProvider>
+  );
+}
+
+hydrate(<Client />, document);

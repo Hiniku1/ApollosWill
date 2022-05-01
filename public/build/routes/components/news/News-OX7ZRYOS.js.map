@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/home/hiniku/ApollosWill/app/routes/components/news/News.tsx?browser"],
+  "sourcesContent": ["export { default } from \"/home/hiniku/ApollosWill/app/routes/components/news/News.tsx\";"],
+  "mappings": ";;;;;;;;AAAA;",
+  "names": []
+}
