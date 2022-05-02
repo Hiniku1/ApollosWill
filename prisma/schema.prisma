@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Anime {
+  id                  Int         @id @default(autoincrement())
+  slug                String?     @db.VarChar(50)
+  synopsis            String?     @db.VarChar(300)
+  en_title            String?     @db.VarChar(300)
+  en_jp_title         String?     @db.VarChar(300)
+  jp_title            String?     @db.VarChar(300)
+  abbreviated_titles  String?     @db.VarChar(50)
+  start_date          DateTime?   @db.Date
+  end_date            DateTime?   @db.Date
+  popularity_rank     Int?
+  rating_rank         Int?
+  subtype             String?     @db.VarChar(20)
+  status              String?     @db.VarChar(30)
+  poster_image        String?     @db.VarChar(2048)
+  cover_image         String?     @db.VarChar(2048)
+  episode_count       Int?
+  media_relationships String?     @map("media-relationships") @db.VarChar(50)
+  User_List           User_List[]
+}
+
+model Manga {
+  id                  Int         @id @default(autoincrement())
+  slug                String?     @db.VarChar(50)
+  synopsis            String?     @db.VarChar(300)
+  en_title            String?     @db.VarChar(300)
+  en_jp_title         String?     @db.VarChar(300)
+  jp_title            String?     @db.VarChar(300)
+  abbreviated_titles  String?     @db.VarChar(50)
+  start_date          DateTime?   @db.Date
+  end_date            DateTime?   @db.Date
+  popularity_rank     Int?
+  rating_rank         Int?
+  subtype             String?     @db.VarChar(20)
+  status              String?     @db.VarChar(30)
+  poster_image        String?     @db.VarChar(2048)
+  cover_image         String?     @db.VarChar(2048)
+  volume_count        Int?
+  chapter_count       Int?
+  media_relationships String?     @map("media-relationships") @db.VarChar(50)
+  User_List           User_List[]
+}
+
+model User {
+  id             Int         @id
+  login          String?     @db.VarChar(30)
+  password       String?     @db.VarChar(50)
+  user_icon      String?     @db.VarChar(2048)
+  user_wallpaper String?     @db.VarChar(2048)
+  user_name      String?     @db.VarChar(50)
+  User_List      User_List[]
+}
+
+model User_List {
+  id       Int     @id @default(autoincrement())
+  id_user  Int?
+  id_anime Int?
+  id_manga Int?
+  rating   String? @db.VarChar(2)
+  Anime    Anime?  @relation(fields: [id_anime], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "User_List_ibfk_2")
+  Manga    Manga?  @relation(fields: [id_manga], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "User_List_ibfk_3")
+  User     User?   @relation(fields: [id_user], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "User_List_ibfk_1")
+
+  @@index([id_anime], map: "id_anime")
+  @@index([id_manga], map: "id_manga")
+  @@index([id_user], map: "id_user")
+}
