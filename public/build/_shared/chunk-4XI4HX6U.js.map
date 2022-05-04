@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/components/ender/Ender.tsx"],
+  "sourcesContent": ["export default function Ender(){\r\n    return(\r\n        <div  className=\"w-full h-[150px] bg-[#FBAFAF] flex items-center justify-center\">\r\n            <h1>Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \u00A92022 All Rights Reserved.</h1>\r\n            <h1>Icone Icone Icone</h1>\r\n        </div>\r\n    )\r\n}"],
+  "mappings": ";;;;;;AAAA;AAAe,iBAAgB;AAC3B,SACI,oCAAC,OAAD;AAAA,IAAM,WAAU;AAAA,KACZ,oCAAC,MAAD,MAAI,kGACJ,oCAAC,MAAD,MAAI;AAAA;",
+  "names": []
+}
