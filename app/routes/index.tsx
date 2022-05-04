@@ -8,31 +8,79 @@ import Ender from "./components/ender/Ender";
 
 import { gql, useQuery } from "@apollo/client";
 
-const GetPosterById = gql`
-  query poster($id: ID!) {
+const dbLoad = gql`
+  query anime($id: ID!) {
     findAnimeById(id: $id) {
+      id
+      slug
+      description
+      titles {
+        localized
+        alternatives
+      }
+      startDate
+      endDate
+      averageRatingRank
+      subtype
+      status
+
+      posterImage {
+        original {
+          url
+        }
+      }
       bannerImage {
         original {
           url
         }
       }
+
+      episodeCount
     }
   }
 `;
 
+import mariadb from "mariadb";
+const pool = mariadb.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  connectionLimit: 5,
+});
+
+
+export const loader = async () => {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    
+    const res = await conn.query("SELECT * FROM `test`")
+    console.log(res)
+  } finally {
+    if (conn) conn.release(); //release to pool
+  }
+  return null;
+};
+
+
+
+
 export default function Index() {
-  const { data } = useQuery(GetPosterById, {
+  const { loading, error, data } = useQuery(dbLoad, {
     variables: {
       id: 1,
     },
   });
-  
+
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+
+ 
+
   return (
     <div className="bg-smooth-pink">
-      
       <Navbar />
-
-      <div>{JSON.stringify(data)}</div>
 
       {/* the div where the News carousel goes */}
       <div className="w-screen h-[500px] flex items-center justify-center">

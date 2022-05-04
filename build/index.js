@@ -969,7 +969,8 @@ function News() {
 // route:/home/hiniku/ApollosWill/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
-  default: () => Index
+  default: () => Index,
+  loader: () => loader
 });
 
 // app/routes/components/news/News.tsx
@@ -1602,26 +1603,70 @@ function Ender2() {
 
 // route:/home/hiniku/ApollosWill/app/routes/index.tsx
 var import_client3 = require("@apollo/client");
-var GetPosterById = import_client3.gql`
-  query poster($id: ID!) {
+var import_mariadb = __toESM(require("mariadb"));
+var dbLoad = import_client3.gql`
+  query anime($id: ID!) {
     findAnimeById(id: $id) {
+      id
+      slug
+      description
+      titles {
+        localized
+        alternatives
+      }
+      startDate
+      endDate
+      averageRatingRank
+      subtype
+      status
+
+      posterImage {
+        original {
+          url
+        }
+      }
       bannerImage {
         original {
           url
         }
       }
+
+      episodeCount
     }
   }
 `;
+var pool = import_mariadb.default.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  connectionLimit: 5
+});
+var loader = async () => {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    const res = await conn.query("SELECT * FROM `test`");
+    console.log(res);
+  } finally {
+    if (conn)
+      conn.release();
+  }
+  return null;
+};
 function Index() {
-  const { data } = (0, import_client3.useQuery)(GetPosterById, {
+  const { loading, error, data } = (0, import_client3.useQuery)(dbLoad, {
     variables: {
       id: 1
     }
   });
+  if (loading)
+    return "Loading...";
+  if (error)
+    return `Error! ${error.message}`;
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
-  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("div", null, JSON.stringify(data)), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[500px] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "w-[900px] h-[350px] flex"
@@ -1802,7 +1847,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "b5015163", "entry": { "module": "/build/entry.client-RE566BQE.js", "imports": ["/build/_shared/chunk-TUGPCD65.js", "/build/_shared/chunk-4QVVR2OG.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-DRACZQNB.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-JNLWYNRK.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-H2BCFB33.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-D5DXLOJB.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-PLY4ZVKS.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-B3EQFFV4.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-5FFAFQ36.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-PBC3WU4I.js", "imports": ["/build/_shared/chunk-OHGLGSUJ.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-OX7ZRYOS.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-ZMPYJH66.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-OHGLGSUJ.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-A43BBCHF.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-B5015163.js" };
+var assets_manifest_default = { "version": "c013fda8", "entry": { "module": "/build/entry.client-ZU75Q7NL.js", "imports": ["/build/_shared/chunk-UUGMOJW4.js", "/build/_shared/chunk-DSGR2ZV7.js", "/build/_shared/chunk-QO3FLZQJ.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-JYLFW4ON.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-4BCZF2DM.js", "imports": ["/build/_shared/chunk-CAM2HAKX.js", "/build/_shared/chunk-DDY35C6H.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-6SJQFI4Z.js", "imports": ["/build/_shared/chunk-ACPK2NDK.js", "/build/_shared/chunk-DDY35C6H.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-2JE4777C.js", "imports": ["/build/_shared/chunk-ISVYQV2F.js", "/build/_shared/chunk-DDY35C6H.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-TXCTLBUS.js", "imports": ["/build/_shared/chunk-YJDGBTQF.js", "/build/_shared/chunk-DDY35C6H.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-L4IVBR2P.js", "imports": ["/build/_shared/chunk-EQP3YLDK.js", "/build/_shared/chunk-DDY35C6H.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-EJV7D64Y.js", "imports": ["/build/_shared/chunk-3GDA3ZKA.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-3JRPIL3P.js", "imports": ["/build/_shared/chunk-NEPZMOVE.js", "/build/_shared/chunk-BM7UA6J7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-TSMZAQ35.js", "imports": ["/build/_shared/chunk-FG6RBXIH.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-W7UFOFS2.js", "imports": ["/build/_shared/chunk-FG6RBXIH.js", "/build/_shared/chunk-3GDA3ZKA.js", "/build/_shared/chunk-ISVYQV2F.js", "/build/_shared/chunk-YJDGBTQF.js", "/build/_shared/chunk-ACPK2NDK.js", "/build/_shared/chunk-EQP3YLDK.js", "/build/_shared/chunk-DDY35C6H.js", "/build/_shared/chunk-NEPZMOVE.js", "/build/_shared/chunk-BM7UA6J7.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-JN3TTJAV.js", "imports": ["/build/_shared/chunk-3GDA3ZKA.js", "/build/_shared/chunk-CAM2HAKX.js", "/build/_shared/chunk-DDY35C6H.js", "/build/_shared/chunk-BM7UA6J7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-C013FDA8.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
