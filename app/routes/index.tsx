@@ -6,43 +6,9 @@ import Season_Su from "./components/anime_seasons/Season_Su";
 import Season_F from "./components/anime_seasons/Season_F";
 import Ender from "./components/ender/Ender";
 
-import { gql, useQuery } from "@apollo/client";
-
 import { pool } from "../database/db.server"
 
 import mariadb from "mariadb";
-
-const dbLoad = gql`
-  query anime($id: ID!) {
-    findAnimeById(id: $id) {
-      id
-      slug
-      description
-      titles {
-        localized
-        alternatives
-      }
-      startDate
-      endDate
-      averageRatingRank
-      subtype
-      status
-
-      posterImage {
-        original {
-          url
-        }
-      }
-      bannerImage {
-        original {
-          url
-        }
-      }
-
-      episodeCount
-    }
-  }
-`;
 
 export const loader = async () => {
   let conn;
@@ -50,7 +16,7 @@ export const loader = async () => {
     conn = await pool.getConnection();
     
     const res = await conn.query("SELECT * FROM `test`")
-    console.log(res)
+    console.log(res[0])
   } finally {
     if (conn) conn.release(); //release to pool
   }
@@ -58,17 +24,6 @@ export const loader = async () => {
 };
 
 export default function Index() {
-  const { loading, error, data } = useQuery(dbLoad, {
-    variables: {
-      id: 1,
-    },
-  });
-
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
-
- 
-
   return (
     <div className="bg-smooth-pink">
       <Navbar />
