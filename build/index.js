@@ -157,7 +157,7 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
   });
 }
 
-// route:/home/hiniku/ApollosWil/app/root.tsx
+// route:/home/hiniku/ApollosWill/app/root.tsx
 var root_exports = {};
 __export(root_exports, {
   default: () => App,
@@ -168,7 +168,7 @@ __export(root_exports, {
 // app/styles/tailwind.css
 var tailwind_default = "/build/_assets/tailwind-33SB6CTZ.css";
 
-// route:/home/hiniku/ApollosWil/app/root.tsx
+// route:/home/hiniku/ApollosWill/app/root.tsx
 var import_react2 = require("@remix-run/react");
 var meta = () => ({
   charset: "utf-8",
@@ -184,7 +184,7 @@ function App() {
   }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react2.Meta, null), /* @__PURE__ */ React.createElement(import_react2.Links, null)), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(import_react2.Outlet, null), /* @__PURE__ */ React.createElement(import_react2.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react2.Scripts, null), /* @__PURE__ */ React.createElement(import_react2.LiveReload, null)));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/anime_cards/anime_cards_list.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_cards/anime_cards_list.tsx
 var anime_cards_list_exports = {};
 __export(anime_cards_list_exports, {
   default: () => Anime_Cards_List
@@ -283,7 +283,7 @@ function Anime_Cards_List() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/anime_seasons/Season_Sp.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Sp.tsx
 var Season_Sp_exports = {};
 __export(Season_Sp_exports, {
   default: () => Season_F
@@ -418,7 +418,7 @@ function Season_F() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/anime_seasons/Season_Su.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Su.tsx
 var Season_Su_exports = {};
 __export(Season_Su_exports, {
   default: () => Season_Su
@@ -553,7 +553,7 @@ function Season_Su() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/anime_seasons/Season_F.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_F.tsx
 var Season_F_exports = {};
 __export(Season_F_exports, {
   default: () => Season_F2
@@ -688,7 +688,7 @@ function Season_F2() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/anime_seasons/Season_W.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_W.tsx
 var Season_W_exports = {};
 __export(Season_W_exports, {
   default: () => Season
@@ -823,7 +823,36 @@ function Season() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/navbar/Navbar.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/min_anime/min_anime.tsx
+var min_anime_exports = {};
+__export(min_anime_exports, {
+  default: () => MinAnime
+});
+function MinAnime() {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ React.createElement("label", {
+    htmlFor: "my-modal-3",
+    className: "btn modal-button"
+  }, "open modal"), /* @__PURE__ */ React.createElement("input", {
+    type: "checkbox",
+    id: "my-modal-3",
+    className: "modal-toggle"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "modal"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "modal-box relative"
+  }, /* @__PURE__ */ React.createElement("label", {
+    htmlFor: "my-modal-3",
+    className: "btn btn-sm btn-circle absolute right-2 top-2"
+  }, "\u2715"), /* @__PURE__ */ React.createElement("h3", {
+    className: "text-lg font-bold"
+  }, "Congratulations random Interner user!"), /* @__PURE__ */ React.createElement("p", {
+    className: "py-4"
+  }, "You've been selected for a chance to get one year of subscription to use Wikipedia for free!"))));
+}
+
+// route:/home/hiniku/ApollosWill/app/routes/components/navbar/Navbar.tsx
 var Navbar_exports = {};
 __export(Navbar_exports, {
   default: () => Navbar
@@ -857,7 +886,7 @@ function Navbar() {
   }))))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/ender/Ender.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/ender/Ender.tsx
 var Ender_exports = {};
 __export(Ender_exports, {
   default: () => Ender
@@ -868,7 +897,7 @@ function Ender() {
   }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/components/news/News.tsx
+// route:/home/hiniku/ApollosWill/app/routes/components/news/News.tsx
 var News_exports = {};
 __export(News_exports, {
   default: () => News
@@ -939,7 +968,7 @@ function News() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/index.tsx
+// route:/home/hiniku/ApollosWill/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
   default: () => Index,
@@ -1601,7 +1630,7 @@ pool.getConnection((err, connection) => {
   return;
 });
 
-// route:/home/hiniku/ApollosWil/app/routes/index.tsx
+// route:/home/hiniku/ApollosWill/app/routes/index.tsx
 var loader = async () => {
   let conn;
   try {
@@ -1656,7 +1685,7 @@ function Index() {
   }, /* @__PURE__ */ React.createElement(Season_F4, null)))), /* @__PURE__ */ React.createElement(Ender2, null));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/list.tsx
+// route:/home/hiniku/ApollosWill/app/routes/list.tsx
 var list_exports = {};
 __export(list_exports, {
   default: () => List
@@ -1758,11 +1787,36 @@ function Anime_Cards_List2() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// route:/home/hiniku/ApollosWil/app/routes/list.tsx
+// app/routes/components/min_anime/min_anime.tsx
+function MinAnime2() {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ React.createElement("label", {
+    htmlFor: "my-modal-3",
+    className: "btn modal-button"
+  }, "open modal"), /* @__PURE__ */ React.createElement("input", {
+    type: "checkbox",
+    id: "my-modal-3",
+    className: "modal-toggle"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "modal"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "modal-box relative"
+  }, /* @__PURE__ */ React.createElement("label", {
+    htmlFor: "my-modal-3",
+    className: "btn btn-sm btn-circle absolute right-2 top-2"
+  }, "\u2715"), /* @__PURE__ */ React.createElement("h3", {
+    className: "text-lg font-bold"
+  }, "Congratulations random Interner user!"), /* @__PURE__ */ React.createElement("p", {
+    className: "py-4"
+  }, "You've been selected for a chance to get one year of subscription to use Wikipedia for free!"))));
+}
+
+// route:/home/hiniku/ApollosWill/app/routes/list.tsx
 function List() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ React.createElement(MinAnime2, null), /* @__PURE__ */ React.createElement("img", {
     className: "w-screen h-[500px] -z-10 -mb-32",
     src: require_Wallpaper(),
     alt: "Wallpaper"
@@ -1798,7 +1852,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "ad320468", "entry": { "module": "/build/entry.client-ZSHVBG2L.js", "imports": ["/build/_shared/chunk-LTD73PV3.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-XFK55NTK.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-7A36BUWS.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-HDJAZKOI.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-D4JKK6AN.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-6K7W77HD.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-QJP62TI6.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-5NWMOSTT.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-TJ7OQTKL.js", "imports": ["/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-KZSSQ6YA.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-UYNCDDJC.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-V6WJ346B.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-AD320468.js" };
+var assets_manifest_default = { "version": "08b5c71e", "entry": { "module": "/build/entry.client-ZSHVBG2L.js", "imports": ["/build/_shared/chunk-LTD73PV3.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-UELYOXDM.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-JNLWYNRK.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-H2BCFB33.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-D5DXLOJB.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-PLY4ZVKS.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-B3EQFFV4.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-5FFAFQ36.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/min_anime/min_anime": { "id": "routes/components/min_anime/min_anime", "parentId": "root", "path": "components/min_anime/min_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/min_anime/min_anime-PQ2RJGWI.js", "imports": ["/build/_shared/chunk-5SE6NU5K.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-UJSZWL77.js", "imports": ["/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-OX7ZRYOS.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-UCZGYRFQ.js", "imports": ["/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-HR2AEAP7.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-S47Y7OUH.js", "imports": ["/build/_shared/chunk-HR2AEAP7.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-5SE6NU5K.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-08B5C71E.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
@@ -1850,6 +1904,14 @@ var routes = {
     index: void 0,
     caseSensitive: void 0,
     module: Season_W_exports
+  },
+  "routes/components/min_anime/min_anime": {
+    id: "routes/components/min_anime/min_anime",
+    parentId: "root",
+    path: "components/min_anime/min_anime",
+    index: void 0,
+    caseSensitive: void 0,
+    module: min_anime_exports
   },
   "routes/components/navbar/Navbar": {
     id: "routes/components/navbar/Navbar",

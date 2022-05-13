@@ -9,6 +9,7 @@ import Ender from "./components/ender/Ender";
 import { pool } from "../database/db.server"
 
 import mariadb from "mariadb";
+import MinAnime from "./components/min_anime/min_anime";
 
 export const loader = async () => {
   let conn;
@@ -26,6 +27,7 @@ export const loader = async () => {
 export default function Index() {
   return (
     <div className="bg-smooth-pink">
+      
       <Navbar />
 
       {/* the div where the News carousel goes */}
