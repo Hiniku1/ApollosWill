@@ -2,8 +2,22 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -184,6 +198,72 @@ function App() {
   }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react2.Meta, null), /* @__PURE__ */ React.createElement(import_react2.Links, null)), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(import_react2.Outlet, null), /* @__PURE__ */ React.createElement(import_react2.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react2.Scripts, null), /* @__PURE__ */ React.createElement(import_react2.LiveReload, null)));
 }
 
+// route:/home/hiniku/ApollosWill/app/routes/components/season_carousel/season_carousel.tsx
+var season_carousel_exports = {};
+__export(season_carousel_exports, {
+  default: () => Season_Carousel
+});
+var import_react3 = __toESM(require("react"));
+var import_react_modal = __toESM(require("react-modal"));
+var AsyncImage = (props) => {
+  const [loadedSrc, setLoadedSrc] = import_react3.default.useState(null);
+  import_react3.default.useEffect(() => {
+    setLoadedSrc(null);
+    if (props.src) {
+      const handleLoad = () => {
+        setLoadedSrc(props.src);
+      };
+      const image = new Image();
+      image.addEventListener("error", (e) => console.log(e));
+      image.addEventListener("load", handleLoad);
+      image.src = props.src;
+      return () => {
+        image.removeEventListener("load", handleLoad);
+      };
+    }
+  }, [props.src]);
+  if (loadedSrc === props.src) {
+    return /* @__PURE__ */ import_react3.default.createElement("img", __spreadValues({}, props));
+  }
+  return null;
+};
+function Season_Carousel({ children }) {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react3.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "carousel w-full"
+  }, /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ import_react3.default.createElement(import_react_modal.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    contentLabel: "Example Modal",
+    className: ""
+  }, /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "card card-side bg-base-100 shadow-xl h-[500px] mr-10"
+  }, /* @__PURE__ */ import_react3.default.createElement("figure", null, /* @__PURE__ */ import_react3.default.createElement("img", {
+    className: "w-[300px]",
+    src: require_Poster1(),
+    alt: "Poster1"
+  })), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "card-body w-[300px]"
+  }, /* @__PURE__ */ import_react3.default.createElement("h2", {
+    className: "card-title"
+  }, "Anime_Name"), /* @__PURE__ */ import_react3.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react3.default.createElement(AsyncImage, {
+    src: "imgs/anime_" + children[10].id + ".png"
+  }));
+}
+
 // route:/home/hiniku/ApollosWill/app/routes/components/anime_cards/anime_cards_list.tsx
 var anime_cards_list_exports = {};
 __export(anime_cards_list_exports, {
@@ -283,573 +363,223 @@ function Anime_Cards_List() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Sp.tsx
-var Season_Sp_exports = {};
-__export(Season_Sp_exports, {
-  default: () => Season_F
+// route:/home/hiniku/ApollosWill/app/routes/components/list_carousel/list_carousel.tsx
+var list_carousel_exports = {};
+__export(list_carousel_exports, {
+  default: () => List_Carousel
 });
-function Season_F() {
-  return /* @__PURE__ */ React.createElement("div", {
+var import_react4 = __toESM(require("react"));
+var import_react_modal2 = __toESM(require("react-modal"));
+function List_Carousel() {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react4.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react4.default.createElement("div", {
     className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
+  }, /* @__PURE__ */ import_react4.default.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ import_react4.default.createElement(import_react_modal2.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    contentLabel: "Example Modal",
+    className: ""
+  }, /* @__PURE__ */ import_react4.default.createElement("div", {
+    className: "card card-side bg-base-100 shadow-xl h-[500px] mr-10"
+  }, /* @__PURE__ */ import_react4.default.createElement("figure", null, /* @__PURE__ */ import_react4.default.createElement("img", {
+    className: "w-[300px]",
     src: require_Poster1(),
     alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_Su.tsx
-var Season_Su_exports = {};
-__export(Season_Su_exports, {
-  default: () => Season_Su
-});
-function Season_Su() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_F.tsx
-var Season_F_exports = {};
-__export(Season_F_exports, {
-  default: () => Season_F2
-});
-function Season_F2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// route:/home/hiniku/ApollosWill/app/routes/components/anime_seasons/Season_W.tsx
-var Season_W_exports = {};
-__export(Season_W_exports, {
-  default: () => Season
-});
-function Season() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
+  })), /* @__PURE__ */ import_react4.default.createElement("div", {
+    className: "card-body w-[300px]"
+  }, /* @__PURE__ */ import_react4.default.createElement("h2", {
+    className: "card-title"
+  }, "Anime_Name"), /* @__PURE__ */ import_react4.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react4.default.createElement("div", {
     id: "seasonW-1",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster1(),
     alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster2(),
     alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster3(),
     alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster4(),
     alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster5(),
     alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
+  }), /* @__PURE__ */ import_react4.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
+  }, /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-4",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-2",
     className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
+  }, "\u276F"))), /* @__PURE__ */ import_react4.default.createElement("div", {
     id: "seasonW-2",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster1(),
     alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster2(),
     alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster3(),
     alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster4(),
     alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster5(),
     alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
+  }), /* @__PURE__ */ import_react4.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
+  }, /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-1",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-3",
     className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
+  }, "\u276F"))), /* @__PURE__ */ import_react4.default.createElement("div", {
     id: "seasonW-3",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster1(),
     alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster2(),
     alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster3(),
     alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster4(),
     alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster5(),
     alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
+  }), /* @__PURE__ */ import_react4.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
+  }, /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-2",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-4",
     className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
+  }, "\u276F"))), /* @__PURE__ */ import_react4.default.createElement("div", {
     id: "seasonW-4",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster1(),
     alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster2(),
     alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster3(),
     alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster4(),
     alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
+  }), /* @__PURE__ */ import_react4.default.createElement("img", {
+    onClick: openModal,
     className: "w-[250px] h-[350px] pl-16",
     src: require_Poster5(),
     alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
+  }), /* @__PURE__ */ import_react4.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
+  }, /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-3",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react4.default.createElement("a", {
     href: "#seasonW-1",
     className: "btn btn-circle"
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/min_anime/min_anime.tsx
-var min_anime_exports = {};
-__export(min_anime_exports, {
-  default: () => MinAnime
+// route:/home/hiniku/ApollosWill/app/routes/components/modal/modal_anime.tsx
+var modal_anime_exports = {};
+__export(modal_anime_exports, {
+  default: () => Modal_Anime
 });
-function MinAnime() {
-  return /* @__PURE__ */ React.createElement("div", {
+var import_react5 = __toESM(require("react"));
+var import_react_modal3 = __toESM(require("react-modal"));
+function Modal_Anime() {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react5.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react5.default.createElement("div", {
     className: ""
-  }, /* @__PURE__ */ React.createElement("label", {
-    htmlFor: "my-modal-3",
-    className: "btn modal-button"
-  }, "open modal"), /* @__PURE__ */ React.createElement("input", {
-    type: "checkbox",
-    id: "my-modal-3",
-    className: "modal-toggle"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "modal"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "modal-box relative"
-  }, /* @__PURE__ */ React.createElement("label", {
-    htmlFor: "my-modal-3",
-    className: "btn btn-sm btn-circle absolute right-2 top-2"
-  }, "\u2715"), /* @__PURE__ */ React.createElement("h3", {
-    className: "text-lg font-bold"
-  }, "Congratulations random Interner user!"), /* @__PURE__ */ React.createElement("p", {
-    className: "py-4"
-  }, "You've been selected for a chance to get one year of subscription to use Wikipedia for free!"))));
+  }, /* @__PURE__ */ import_react5.default.createElement("button", {
+    onClick: openModal
+  }, "Open Modal"), /* @__PURE__ */ import_react5.default.createElement(import_react_modal3.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    contentLabel: "Example Modal"
+  }, /* @__PURE__ */ import_react5.default.createElement("button", {
+    onClick: closeModal
+  }, "close"), /* @__PURE__ */ import_react5.default.createElement("div", null, "I am a modal"), /* @__PURE__ */ import_react5.default.createElement("form", null, /* @__PURE__ */ import_react5.default.createElement("input", null))));
 }
 
 // route:/home/hiniku/ApollosWill/app/routes/components/navbar/Navbar.tsx
@@ -857,7 +587,7 @@ var Navbar_exports = {};
 __export(Navbar_exports, {
   default: () => Navbar
 });
-var import_react3 = require("@remix-run/react");
+var import_react6 = require("@remix-run/react");
 function Navbar() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[75px] z-10 bg-smooth-blue"
@@ -865,7 +595,7 @@ function Navbar() {
     className: "px-2 flex justify-between items-center w-full h-full"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react6.Link, {
     to: "/"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "font-quicksand mr-4 text-[24px]"
@@ -877,7 +607,7 @@ function Navbar() {
     className: "pr-4"
   }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react3.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react6.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[100px]",
@@ -1043,7 +773,7 @@ function News2() {
 }
 
 // app/routes/components/navbar/Navbar.tsx
-var import_react4 = require("@remix-run/react");
+var import_react7 = require("@remix-run/react");
 function Navbar2() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[75px] z-10 bg-smooth-blue"
@@ -1051,7 +781,7 @@ function Navbar2() {
     className: "px-2 flex justify-between items-center w-full h-full"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
     to: "/"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "font-quicksand mr-4 text-[24px]"
@@ -1063,7 +793,7 @@ function Navbar2() {
     className: "pr-4"
   }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react4.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[100px]",
@@ -1072,535 +802,255 @@ function Navbar2() {
   }))))));
 }
 
-// app/routes/components/anime_seasons/Season_W.tsx
-function Season2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonW-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonW-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonW-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonW-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonW-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// app/routes/components/anime_seasons/Season_Sp.tsx
-function Season_F3() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSp-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSp-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// app/routes/components/anime_seasons/Season_Su.tsx
-function Season_Su2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonSu-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonSu-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
-// app/routes/components/anime_seasons/Season_F.tsx
-function Season_F4() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "carousel w-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-1",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-4",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-2",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-2",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-1",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-3",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-3",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-2",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-4",
-    className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ React.createElement("div", {
-    id: "seasonF-4",
-    className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster1(),
-    alt: "Poster1"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster2(),
-    alt: "Poster2"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster3(),
-    alt: "Poster3"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster4(),
-    alt: "Poster4"
-  }), /* @__PURE__ */ React.createElement("img", {
-    className: "w-[250px] h-[350px] pl-16",
-    src: require_Poster5(),
-    alt: "Poster5"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-3",
-    className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ React.createElement("a", {
-    href: "#seasonF-1",
-    className: "btn btn-circle"
-  }, "\u276F"))));
-}
-
 // app/routes/components/ender/Ender.tsx
 function Ender2() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "w-full h-[150px] bg-[#FBAFAF] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
+}
+
+// app/routes/components/season_carousel/season_carousel.tsx
+var import_react8 = __toESM(require("react"));
+var import_react_modal4 = __toESM(require("react-modal"));
+var AsyncImage2 = (props) => {
+  const [loadedSrc, setLoadedSrc] = import_react8.default.useState(null);
+  import_react8.default.useEffect(() => {
+    setLoadedSrc(null);
+    if (props.src) {
+      const handleLoad = () => {
+        setLoadedSrc(props.src);
+      };
+      const image = new Image();
+      image.addEventListener("error", (e) => console.log(e));
+      image.addEventListener("load", handleLoad);
+      image.src = props.src;
+      return () => {
+        image.removeEventListener("load", handleLoad);
+      };
+    }
+  }, [props.src]);
+  if (loadedSrc === props.src) {
+    return /* @__PURE__ */ import_react8.default.createElement("img", __spreadValues({}, props));
+  }
+  return null;
+};
+function Season_Carousel2({ children }) {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react8.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react8.default.createElement("div", {
+    className: "carousel w-full"
+  }, /* @__PURE__ */ import_react8.default.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ import_react8.default.createElement(import_react_modal4.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    contentLabel: "Example Modal",
+    className: ""
+  }, /* @__PURE__ */ import_react8.default.createElement("div", {
+    className: "card card-side bg-base-100 shadow-xl h-[500px] mr-10"
+  }, /* @__PURE__ */ import_react8.default.createElement("figure", null, /* @__PURE__ */ import_react8.default.createElement("img", {
+    className: "w-[300px]",
+    src: require_Poster1(),
+    alt: "Poster1"
+  })), /* @__PURE__ */ import_react8.default.createElement("div", {
+    className: "card-body w-[300px]"
+  }, /* @__PURE__ */ import_react8.default.createElement("h2", {
+    className: "card-title"
+  }, "Anime_Name"), /* @__PURE__ */ import_react8.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react8.default.createElement(AsyncImage2, {
+    src: "imgs/anime_" + children[10].id + ".png"
+  }));
+}
+
+// app/routes/components/list_carousel/list_carousel.tsx
+var import_react9 = __toESM(require("react"));
+var import_react_modal5 = __toESM(require("react-modal"));
+function List_Carousel2() {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react9.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "carousel w-full"
+  }, /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: ""
+  }, /* @__PURE__ */ import_react9.default.createElement(import_react_modal5.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    contentLabel: "Example Modal",
+    className: ""
+  }, /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "card card-side bg-base-100 shadow-xl h-[500px] mr-10"
+  }, /* @__PURE__ */ import_react9.default.createElement("figure", null, /* @__PURE__ */ import_react9.default.createElement("img", {
+    className: "w-[300px]",
+    src: require_Poster1(),
+    alt: "Poster1"
+  })), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "card-body w-[300px]"
+  }, /* @__PURE__ */ import_react9.default.createElement("h2", {
+    className: "card-title"
+  }, "Anime_Name"), /* @__PURE__ */ import_react9.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react9.default.createElement("div", {
+    id: "seasonW-1",
+    className: "carousel-item relative w-full scroll-mt-36"
+  }, /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster1(),
+    alt: "Poster1"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster2(),
+    alt: "Poster2"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster3(),
+    alt: "Poster3"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster4(),
+    alt: "Poster4"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster5(),
+    alt: "Poster5"
+  }), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+  }, /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-4",
+    className: "btn btn-circle"
+  }, "\u276E"), /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-2",
+    className: "btn btn-circle"
+  }, "\u276F"))), /* @__PURE__ */ import_react9.default.createElement("div", {
+    id: "seasonW-2",
+    className: "carousel-item relative w-full scroll-mt-36"
+  }, /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster1(),
+    alt: "Poster1"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster2(),
+    alt: "Poster2"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster3(),
+    alt: "Poster3"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster4(),
+    alt: "Poster4"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster5(),
+    alt: "Poster5"
+  }), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+  }, /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-1",
+    className: "btn btn-circle"
+  }, "\u276E"), /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-3",
+    className: "btn btn-circle"
+  }, "\u276F"))), /* @__PURE__ */ import_react9.default.createElement("div", {
+    id: "seasonW-3",
+    className: "carousel-item relative w-full scroll-mt-36"
+  }, /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster1(),
+    alt: "Poster1"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster2(),
+    alt: "Poster2"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster3(),
+    alt: "Poster3"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster4(),
+    alt: "Poster4"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster5(),
+    alt: "Poster5"
+  }), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+  }, /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-2",
+    className: "btn btn-circle"
+  }, "\u276E"), /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-4",
+    className: "btn btn-circle"
+  }, "\u276F"))), /* @__PURE__ */ import_react9.default.createElement("div", {
+    id: "seasonW-4",
+    className: "carousel-item relative w-full scroll-mt-36"
+  }, /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster1(),
+    alt: "Poster1"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster2(),
+    alt: "Poster2"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster3(),
+    alt: "Poster3"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster4(),
+    alt: "Poster4"
+  }), /* @__PURE__ */ import_react9.default.createElement("img", {
+    onClick: openModal,
+    className: "w-[250px] h-[350px] pl-16",
+    src: require_Poster5(),
+    alt: "Poster5"
+  }), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+  }, /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-3",
+    className: "btn btn-circle"
+  }, "\u276E"), /* @__PURE__ */ import_react9.default.createElement("a", {
+    href: "#seasonW-1",
+    className: "btn btn-circle"
+  }, "\u276F"))));
 }
 
 // app/database/db.server.ts
@@ -1631,12 +1081,12 @@ pool.getConnection((err, connection) => {
 });
 
 // route:/home/hiniku/ApollosWill/app/routes/index.tsx
+var seasonAnime;
 var loader = async () => {
   let conn;
   try {
     conn = await pool.getConnection();
-    const res = await conn.query("SELECT * FROM `test`");
-    console.log(res[0]);
+    seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;");
   } finally {
     if (conn)
       conn.release();
@@ -1652,37 +1102,21 @@ function Index() {
     className: "w-[900px] h-[350px] flex"
   }, /* @__PURE__ */ React.createElement(News2, null))), /* @__PURE__ */ React.createElement("h1", {
     className: "pl-20 pb-5 font-quicksand text-[24px]"
-  }, "Winter 2022"), /* @__PURE__ */ React.createElement("div", {
+  }, "Your List"), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
   }, /* @__PURE__ */ React.createElement("div", {
     className: " w-full h-[500px] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(Season2, null)))), /* @__PURE__ */ React.createElement("h1", {
+  }, /* @__PURE__ */ React.createElement(List_Carousel2, null)))), /* @__PURE__ */ React.createElement("h1", {
     className: "pl-20 pb-5 font-quicksand text-[24px] pt-10"
-  }, "Spring 2022"), /* @__PURE__ */ React.createElement("div", {
+  }, "Current"), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
   }, /* @__PURE__ */ React.createElement("div", {
     className: " w-full h-[500px] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(Season_F3, null)))), /* @__PURE__ */ React.createElement("h1", {
-    className: "pl-20 pb-5 font-quicksand text-[24px] pt-10"
-  }, "Summer 2022"), /* @__PURE__ */ React.createElement("div", {
-    className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: " w-full h-[500px] flex items-center justify-center"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(Season_Su2, null)))), /* @__PURE__ */ React.createElement("h1", {
-    className: "pl-20 pb-5 font-quicksand text-[24px] pt-10"
-  }, "Fall 2022"), /* @__PURE__ */ React.createElement("div", {
-    className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: " w-full h-[500px] flex items-center justify-center"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(Season_F4, null)))), /* @__PURE__ */ React.createElement(Ender2, null));
+  }, /* @__PURE__ */ React.createElement(Season_Carousel2, null, seasonAnime)))), /* @__PURE__ */ React.createElement(Ender2, null));
 }
 
 // route:/home/hiniku/ApollosWill/app/routes/list.tsx
@@ -1690,7 +1124,7 @@ var list_exports = {};
 __export(list_exports, {
   default: () => List
 });
-var import_react5 = require("@remix-run/react");
+var import_react10 = require("@remix-run/react");
 
 // app/routes/components/anime_cards/anime_cards_list.tsx
 function Anime_Cards_List2() {
@@ -1787,36 +1221,11 @@ function Anime_Cards_List2() {
   }, "Anime_Name"), /* @__PURE__ */ React.createElement("p", null, "Something Something")))));
 }
 
-// app/routes/components/min_anime/min_anime.tsx
-function MinAnime2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: ""
-  }, /* @__PURE__ */ React.createElement("label", {
-    htmlFor: "my-modal-3",
-    className: "btn modal-button"
-  }, "open modal"), /* @__PURE__ */ React.createElement("input", {
-    type: "checkbox",
-    id: "my-modal-3",
-    className: "modal-toggle"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "modal"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "modal-box relative"
-  }, /* @__PURE__ */ React.createElement("label", {
-    htmlFor: "my-modal-3",
-    className: "btn btn-sm btn-circle absolute right-2 top-2"
-  }, "\u2715"), /* @__PURE__ */ React.createElement("h3", {
-    className: "text-lg font-bold"
-  }, "Congratulations random Interner user!"), /* @__PURE__ */ React.createElement("p", {
-    className: "py-4"
-  }, "You've been selected for a chance to get one year of subscription to use Wikipedia for free!"))));
-}
-
 // route:/home/hiniku/ApollosWill/app/routes/list.tsx
 function List() {
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
-  }, /* @__PURE__ */ React.createElement(MinAnime2, null), /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ React.createElement("img", {
     className: "w-screen h-[500px] -z-10 -mb-32",
     src: require_Wallpaper(),
     alt: "Wallpaper"
@@ -1824,7 +1233,7 @@ function List() {
     className: "h-full w-full flex justify-center items-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center"
-  }, /* @__PURE__ */ React.createElement(import_react5.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react10.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[150px]",
@@ -1852,7 +1261,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "08b5c71e", "entry": { "module": "/build/entry.client-ZSHVBG2L.js", "imports": ["/build/_shared/chunk-LTD73PV3.js", "/build/_shared/chunk-IYRIQ6PI.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-UELYOXDM.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-JNLWYNRK.js", "imports": ["/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_F": { "id": "routes/components/anime_seasons/Season_F", "parentId": "root", "path": "components/anime_seasons/Season_F", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_F-H2BCFB33.js", "imports": ["/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Sp": { "id": "routes/components/anime_seasons/Season_Sp", "parentId": "root", "path": "components/anime_seasons/Season_Sp", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Sp-D5DXLOJB.js", "imports": ["/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_Su": { "id": "routes/components/anime_seasons/Season_Su", "parentId": "root", "path": "components/anime_seasons/Season_Su", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_Su-PLY4ZVKS.js", "imports": ["/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_seasons/Season_W": { "id": "routes/components/anime_seasons/Season_W", "parentId": "root", "path": "components/anime_seasons/Season_W", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_seasons/Season_W-B3EQFFV4.js", "imports": ["/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-5FFAFQ36.js", "imports": ["/build/_shared/chunk-QY5JLRWB.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/min_anime/min_anime": { "id": "routes/components/min_anime/min_anime", "parentId": "root", "path": "components/min_anime/min_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/min_anime/min_anime-PQ2RJGWI.js", "imports": ["/build/_shared/chunk-5SE6NU5K.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-UJSZWL77.js", "imports": ["/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-HR2AEAP7.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-OX7ZRYOS.js", "imports": ["/build/_shared/chunk-SNYIVYPZ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-UCZGYRFQ.js", "imports": ["/build/_shared/chunk-MRFT7TK3.js", "/build/_shared/chunk-SNYIVYPZ.js", "/build/_shared/chunk-HR2AEAP7.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-7AJLX53Z.js", "/build/_shared/chunk-B5HTOMRL.js", "/build/_shared/chunk-VSYN35HC.js", "/build/_shared/chunk-QXPJ2DQU.js", "/build/_shared/chunk-H7SLTJQE.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-S47Y7OUH.js", "imports": ["/build/_shared/chunk-HR2AEAP7.js", "/build/_shared/chunk-QY5JLRWB.js", "/build/_shared/chunk-EZPPP6U5.js", "/build/_shared/chunk-H7SLTJQE.js", "/build/_shared/chunk-5SE6NU5K.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-08B5C71E.js" };
+var assets_manifest_default = { "version": "c02f6628", "entry": { "module": "/build/entry.client-XCMY44MR.js", "imports": ["/build/_shared/chunk-7CZMI56X.js", "/build/_shared/chunk-MEIEL36I.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-M5BSYEUP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-3RED4VTJ.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-KC57ODFZ.js", "imports": ["/build/_shared/chunk-F4KY2GZ2.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-INNMENHJ.js", "imports": ["/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-PCRJCXTZ.js", "imports": ["/build/_shared/chunk-QG4WLLXH.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-TX2F3TAU.js", "imports": ["/build/_shared/chunk-4GK5JZ5K.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-MUT6MA5Q.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-4GK5JZ5K.js", "/build/_shared/chunk-F4KY2GZ2.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js", "/build/_shared/chunk-QG4WLLXH.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-PAKUW7YG.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-C02F6628.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
@@ -1865,6 +1274,14 @@ var routes = {
     caseSensitive: void 0,
     module: root_exports
   },
+  "routes/components/season_carousel/season_carousel": {
+    id: "routes/components/season_carousel/season_carousel",
+    parentId: "root",
+    path: "components/season_carousel/season_carousel",
+    index: void 0,
+    caseSensitive: void 0,
+    module: season_carousel_exports
+  },
   "routes/components/anime_cards/anime_cards_list": {
     id: "routes/components/anime_cards/anime_cards_list",
     parentId: "root",
@@ -1873,45 +1290,21 @@ var routes = {
     caseSensitive: void 0,
     module: anime_cards_list_exports
   },
-  "routes/components/anime_seasons/Season_Sp": {
-    id: "routes/components/anime_seasons/Season_Sp",
+  "routes/components/list_carousel/list_carousel": {
+    id: "routes/components/list_carousel/list_carousel",
     parentId: "root",
-    path: "components/anime_seasons/Season_Sp",
+    path: "components/list_carousel/list_carousel",
     index: void 0,
     caseSensitive: void 0,
-    module: Season_Sp_exports
+    module: list_carousel_exports
   },
-  "routes/components/anime_seasons/Season_Su": {
-    id: "routes/components/anime_seasons/Season_Su",
+  "routes/components/modal/modal_anime": {
+    id: "routes/components/modal/modal_anime",
     parentId: "root",
-    path: "components/anime_seasons/Season_Su",
+    path: "components/modal/modal_anime",
     index: void 0,
     caseSensitive: void 0,
-    module: Season_Su_exports
-  },
-  "routes/components/anime_seasons/Season_F": {
-    id: "routes/components/anime_seasons/Season_F",
-    parentId: "root",
-    path: "components/anime_seasons/Season_F",
-    index: void 0,
-    caseSensitive: void 0,
-    module: Season_F_exports
-  },
-  "routes/components/anime_seasons/Season_W": {
-    id: "routes/components/anime_seasons/Season_W",
-    parentId: "root",
-    path: "components/anime_seasons/Season_W",
-    index: void 0,
-    caseSensitive: void 0,
-    module: Season_W_exports
-  },
-  "routes/components/min_anime/min_anime": {
-    id: "routes/components/min_anime/min_anime",
-    parentId: "root",
-    path: "components/min_anime/min_anime",
-    index: void 0,
-    caseSensitive: void 0,
-    module: min_anime_exports
+    module: modal_anime_exports
   },
   "routes/components/navbar/Navbar": {
     id: "routes/components/navbar/Navbar",

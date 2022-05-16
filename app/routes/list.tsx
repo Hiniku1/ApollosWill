@@ -1,15 +1,12 @@
 import { Link } from "@remix-run/react";
 import Anime_Cards_List from "./components/anime_cards/anime_cards_list";
 import Ender from "./components/ender/Ender";
-import MinAnime from "./components/min_anime/min_anime";
 
 
 
 export default function List() {
     return (
         <div className="bg-smooth-pink">
-            
-            <MinAnime/>
             
             <img className="w-screen h-[500px] -z-10 -mb-32" src={require("public/imgs/Wallpaper.jpeg")} alt="Wallpaper" />
             <div className="h-full w-full flex justify-center items-center">
