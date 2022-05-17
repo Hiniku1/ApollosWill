@@ -2,22 +2,8 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -205,29 +191,8 @@ __export(season_carousel_exports, {
 });
 var import_react3 = __toESM(require("react"));
 var import_react_modal = __toESM(require("react-modal"));
-var AsyncImage = (props) => {
-  const [loadedSrc, setLoadedSrc] = import_react3.default.useState(null);
-  import_react3.default.useEffect(() => {
-    setLoadedSrc(null);
-    if (props.src) {
-      const handleLoad = () => {
-        setLoadedSrc(props.src);
-      };
-      const image = new Image();
-      image.addEventListener("error", (e) => console.log(e));
-      image.addEventListener("load", handleLoad);
-      image.src = props.src;
-      return () => {
-        image.removeEventListener("load", handleLoad);
-      };
-    }
-  }, [props.src]);
-  if (loadedSrc === props.src) {
-    return /* @__PURE__ */ import_react3.default.createElement("img", __spreadValues({}, props));
-  }
-  return null;
-};
-function Season_Carousel({ children }) {
+function Season_Carousel({ animes }) {
+  console.log(animes[0]);
   let subtitle;
   const [modalIsOpen, setIsOpen] = import_react3.default.useState(false);
   function openModal() {
@@ -259,8 +224,9 @@ function Season_Carousel({ children }) {
     className: "card-body w-[300px]"
   }, /* @__PURE__ */ import_react3.default.createElement("h2", {
     className: "card-title"
-  }, "Anime_Name"), /* @__PURE__ */ import_react3.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react3.default.createElement(AsyncImage, {
-    src: "imgs/anime_" + children[10].id + ".png"
+  }, "Anime_Name"), /* @__PURE__ */ import_react3.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react3.default.createElement("img", {
+    src: "imgs/anime_" + animes[0].id + ".png",
+    alt: "Pee"
   }));
 }
 
@@ -812,29 +778,8 @@ function Ender2() {
 // app/routes/components/season_carousel/season_carousel.tsx
 var import_react8 = __toESM(require("react"));
 var import_react_modal4 = __toESM(require("react-modal"));
-var AsyncImage2 = (props) => {
-  const [loadedSrc, setLoadedSrc] = import_react8.default.useState(null);
-  import_react8.default.useEffect(() => {
-    setLoadedSrc(null);
-    if (props.src) {
-      const handleLoad = () => {
-        setLoadedSrc(props.src);
-      };
-      const image = new Image();
-      image.addEventListener("error", (e) => console.log(e));
-      image.addEventListener("load", handleLoad);
-      image.src = props.src;
-      return () => {
-        image.removeEventListener("load", handleLoad);
-      };
-    }
-  }, [props.src]);
-  if (loadedSrc === props.src) {
-    return /* @__PURE__ */ import_react8.default.createElement("img", __spreadValues({}, props));
-  }
-  return null;
-};
-function Season_Carousel2({ children }) {
+function Season_Carousel2({ animes }) {
+  console.log(animes[0]);
   let subtitle;
   const [modalIsOpen, setIsOpen] = import_react8.default.useState(false);
   function openModal() {
@@ -866,8 +811,9 @@ function Season_Carousel2({ children }) {
     className: "card-body w-[300px]"
   }, /* @__PURE__ */ import_react8.default.createElement("h2", {
     className: "card-title"
-  }, "Anime_Name"), /* @__PURE__ */ import_react8.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react8.default.createElement(AsyncImage2, {
-    src: "imgs/anime_" + children[10].id + ".png"
+  }, "Anime_Name"), /* @__PURE__ */ import_react8.default.createElement("p", null, "Something Something"))))), /* @__PURE__ */ import_react8.default.createElement("img", {
+    src: "imgs/anime_" + animes[0].id + ".png",
+    alt: "Pee"
   }));
 }
 
@@ -1081,19 +1027,23 @@ pool.getConnection((err, connection) => {
 });
 
 // route:/home/hiniku/ApollosWill/app/routes/index.tsx
-var seasonAnime;
+var import_react10 = require("@remix-run/react");
 var loader = async () => {
   let conn;
+  let seasonAnime = [];
   try {
     conn = await pool.getConnection();
     seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;");
+    seasonAnime = seasonAnime.map((f) => ({ id: f.id }));
   } finally {
     if (conn)
       conn.release();
   }
-  return null;
+  console.log(seasonAnime);
+  return seasonAnime;
 };
 function Index() {
+  const anime = (0, import_react10.useLoaderData)();
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
   }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("div", {
@@ -1116,7 +1066,9 @@ function Index() {
     className: " w-full h-[500px] flex items-center justify-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(Season_Carousel2, null, seasonAnime)))), /* @__PURE__ */ React.createElement(Ender2, null));
+  }, /* @__PURE__ */ React.createElement(Season_Carousel2, {
+    animes: anime
+  })))), /* @__PURE__ */ React.createElement(Ender2, null));
 }
 
 // route:/home/hiniku/ApollosWill/app/routes/list.tsx
@@ -1124,7 +1076,7 @@ var list_exports = {};
 __export(list_exports, {
   default: () => List
 });
-var import_react10 = require("@remix-run/react");
+var import_react11 = require("@remix-run/react");
 
 // app/routes/components/anime_cards/anime_cards_list.tsx
 function Anime_Cards_List2() {
@@ -1233,7 +1185,7 @@ function List() {
     className: "h-full w-full flex justify-center items-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center"
-  }, /* @__PURE__ */ React.createElement(import_react10.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react11.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[150px]",
@@ -1261,7 +1213,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "c02f6628", "entry": { "module": "/build/entry.client-XCMY44MR.js", "imports": ["/build/_shared/chunk-7CZMI56X.js", "/build/_shared/chunk-MEIEL36I.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-M5BSYEUP.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-3RED4VTJ.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-KC57ODFZ.js", "imports": ["/build/_shared/chunk-F4KY2GZ2.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-INNMENHJ.js", "imports": ["/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-PCRJCXTZ.js", "imports": ["/build/_shared/chunk-QG4WLLXH.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-TX2F3TAU.js", "imports": ["/build/_shared/chunk-4GK5JZ5K.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-MUT6MA5Q.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-4GK5JZ5K.js", "/build/_shared/chunk-F4KY2GZ2.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-EVNUERIG.js", "/build/_shared/chunk-QG4WLLXH.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-PAKUW7YG.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-C02F6628.js" };
+var assets_manifest_default = { "version": "0463b08b", "entry": { "module": "/build/entry.client-TB2X2JCE.js", "imports": ["/build/_shared/chunk-TF7DY7FC.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-3RED4VTJ.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-XFRPRULU.js", "imports": ["/build/_shared/chunk-X2XZOGBS.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-NEQSYC5A.js", "imports": ["/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-ZRPU7EJA.js", "imports": ["/build/_shared/chunk-EVBVAY2C.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-QE4QNN7D.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-EVBVAY2C.js", "/build/_shared/chunk-X2XZOGBS.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-LTNIYS7J.js", "imports": ["/build/_shared/chunk-3M5YMT2S.js", "/build/_shared/chunk-DLH4EA4Y.js", "/build/_shared/chunk-XYXPWVCY.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-0463B08B.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

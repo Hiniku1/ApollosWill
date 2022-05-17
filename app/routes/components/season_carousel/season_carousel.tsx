@@ -1,33 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
 
-const AsyncImage = (props) => {
-  const [loadedSrc, setLoadedSrc] = React.useState(null);
-  React.useEffect(() => {
-      setLoadedSrc(null);
-      if (props.src) {
-          const handleLoad = () => {
-              setLoadedSrc(props.src);
-          };
-          const image = new Image();
-          image.addEventListener('error', (e)=>console.log(e))
-          image.addEventListener('load', handleLoad);
-          image.src = props.src;
-          return () => {
-              image.removeEventListener('load', handleLoad);
-          };
-      }
-  }, [props.src]);
-  if (loadedSrc === props.src) {
-      return (
-          <img {...props} />
-      );
-  }
-  return null;
-};
 
+export default function Season_Carousel({ animes }) {
 
-export default function Season_Carousel({ children }) {
+  console.log(animes[0])
 
   let subtitle: { style: { color: string } };
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -71,10 +48,8 @@ export default function Season_Carousel({ children }) {
         </Modal>
       </div>
 
-      <AsyncImage src={"imgs/anime_" + children[10].id + ".png"}/>
-
+      <img src={"imgs/anime_" + animes[0].id + ".png"} alt="Pee" />
       
-     
     </div>
   );
 }

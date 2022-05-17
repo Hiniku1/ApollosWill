@@ -5,25 +5,30 @@ import Season_Carousel from "./components/season_carousel/season_carousel";
 import List_Carousel from "./components/list_carousel/list_carousel";
 
 import { pool } from "../database/db.server"
+import { useLoaderData } from "@remix-run/react";
 
-let seasonAnime: any;
 
 export const loader = async () => {
   let conn;
+  let seasonAnime = [];
   try {
     conn = await pool.getConnection();
     
     seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;")
-    //console.log(seasonAnime)
+    seasonAnime = seasonAnime.map(f => ({id: f.id}));
     
 
   } finally {
     if (conn) conn.release(); //release to pool
   }
-  return null;
+  
+  console.log(seasonAnime)
+  return seasonAnime;
+
 };
 
 export default function Index() {
+  const anime = useLoaderData()
   return (
     <div className="bg-smooth-pink">
 
@@ -50,7 +55,9 @@ export default function Index() {
       <div className="w-screen h-full flex items-center justify-center bg-smooth-blue">
         <div className=" w-full h-[500px] flex items-center justify-center">
           <div className="w-full h-[400px]">
-            <Season_Carousel>{seasonAnime}</Season_Carousel>
+          
+          <Season_Carousel animes={anime}/>
+
           </div>
         </div>
       </div>
