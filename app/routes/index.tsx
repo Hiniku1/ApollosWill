@@ -15,14 +15,13 @@ export const loader = async () => {
     conn = await pool.getConnection();
     
     seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;")
-    seasonAnime = seasonAnime.map(f => ({id: f.id}));
+    
     
 
   } finally {
     if (conn) conn.release(); //release to pool
   }
-  
-  console.log(seasonAnime)
+
   return seasonAnime;
 
 };
