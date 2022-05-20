@@ -4,21 +4,31 @@ import Modal from "react-modal";
 let modalAnimePoster = "";
 let modalAnimeName = "";
 let modalAnimeDescription = "";
-
+let modalAnimeEpisodeCount = "";
+let modalAnimeEpisodeWatched = 0;
+let modalAnimeScore = 0;
 
 
 export default function Season_Carousel({ animes }) {
-  
-  function changeModalAnime(id: number){
-    let animePoster = animes[id].id
-    let animeName = animes[id].en_title
-    let animeDescription = animes[id].synopsis
+  function changeModalAnime(id: number) {
+    let animePoster = animes[id].id;
+    let animeName = animes[id].en_title;
+    let animeDescription = animes[id].synopsis;
+    let animeEpisodeCount = animes[id].episode_count;
+
+    
 
     openModal();
-    return modalAnimePoster = animePoster, modalAnimeName = animeName, modalAnimeDescription = animeDescription
-  
+    return (
+      (modalAnimePoster = animePoster),
+      (modalAnimeName = animeName),
+      (modalAnimeDescription = animeDescription),
+      (modalAnimeEpisodeCount = animeEpisodeCount)
+    );
   }
 
+  
+  
   let subtitle: { style: { color: string } };
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -28,24 +38,32 @@ export default function Season_Carousel({ animes }) {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
+    
   }
 
   function closeModal() {
     setIsOpen(false);
   }
 
+  function addScore() {
+    let animeScore = modalAnimeScore + 1
+    
+    console.log("PEE")
+    return modalAnimeScore = animeScore
+  }
+
   return (
     <div className="carousel w-full">
-      <div className="">
+      <div>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
+          ariaHideApp={false}
           contentLabel="Example Modal"
           className=""
         >
-          <div className="card card-side bg-base-100 shadow-xl h-[500px] mr-10">
+          <div className="card card-side bg-base-100 shadow-xl h-[500px]">
             <figure>
               <img
                 className="w-[300px]"
@@ -53,18 +71,42 @@ export default function Season_Carousel({ animes }) {
                 alt="Poster1"
               />
             </figure>
-            <div className="card-body w-[300px]">
-              <h2 className="card-title">{"" + modalAnimeName}</h2>
+            <div className="card-body">
+              <h2 className="card-title">{modalAnimeName}</h2>
               <p>{modalAnimeDescription}</p>
+
+              Pee
+              
+              <div className="">
+                <div className="justify-center flex">Score</div>
+                <div className="justify-center items-center flex">
+                  {modalAnimeScore + " / 10"}
+                </div>
+
+                <div className="card-actions justify-center flex">
+                  <button className="w-[50px] bg-smooth-blue">-</button>
+                  <button className="w-[50px] bg-smooth-blue" onClick={addScore}>+</button>
+                </div>
+
+                <div className="justify-center flex">Episodes</div>
+                <div className="justify-center items-center flex">
+                  {"0 / " + modalAnimeEpisodeCount}
+                </div>
+
+                <div className="card-actions justify-center flex">
+                  <button className="w-[50px] bg-smooth-blue">-</button>
+                  <button className="w-[50px] bg-smooth-blue">+</button>
+                </div>
+              </div>
+
+              
+
             </div>
           </div>
         </Modal>
       </div>
 
-      <div
-        id="season-1"
-        className="carousel-item relative w-full scroll-mt-36"
-      >
+      <div id="season-1" className="carousel-item relative w-full scroll-mt-36">
         <img
           onClick={() => changeModalAnime(0)}
           className="w-[250px] h-[350px] pl-16"
@@ -106,10 +148,7 @@ export default function Season_Carousel({ animes }) {
         </div>
       </div>
 
-      <div
-        id="season-2"
-        className="carousel-item relative w-full scroll-mt-36"
-      >
+      <div id="season-2" className="carousel-item relative w-full scroll-mt-36">
         <img
           onClick={() => changeModalAnime(5)}
           className="w-[250px] h-[350px] pl-16"
@@ -151,10 +190,7 @@ export default function Season_Carousel({ animes }) {
         </div>
       </div>
 
-      <div
-        id="season-3"
-        className="carousel-item relative w-full scroll-mt-36"
-      >
+      <div id="season-3" className="carousel-item relative w-full scroll-mt-36">
         <img
           onClick={() => changeModalAnime(10)}
           className="w-[250px] h-[350px] pl-16"
@@ -195,7 +231,6 @@ export default function Season_Carousel({ animes }) {
           </a>
         </div>
       </div>
-
     </div>
   );
 }
