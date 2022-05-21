@@ -1,34 +1,48 @@
 import React from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 
-let modalAnimePoster = "";
-let modalAnimeName = "";
-let modalAnimeDescription = "";
-let modalAnimeEpisodeCount = "";
-let modalAnimeEpisodeWatched = 0;
-let modalAnimeScore = 0;
-
-
 export default function Season_Carousel({ animes }) {
-  function changeModalAnime(id: number) {
-    let animePoster = animes[id].id;
-    let animeName = animes[id].en_title;
-    let animeDescription = animes[id].synopsis;
-    let animeEpisodeCount = animes[id].episode_count;
+  let [modalAnimePoster, setAnimePoster] = useState("");
+  let [modalAnimeName, setAnimeName] = useState("");
+  let [modalAnimeDescription, setAnimeDescription] = useState("");
+  let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = useState(0);
+  let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = useState(0);
+  let [modalAnimeScore, setAnimeScore] = useState(0);
 
-    
+  function changeModalAnime(id: number) {
+    setAnimePoster(animes[id].id)
+    setAnimeName(animes[id].en_title)
+    setAnimeDescription(animes[id].synopsis)
+    setAnimeEpisodeCount(animes[id].episode_count)
 
     openModal();
-    return (
-      (modalAnimePoster = animePoster),
-      (modalAnimeName = animeName),
-      (modalAnimeDescription = animeDescription),
-      (modalAnimeEpisodeCount = animeEpisodeCount)
-    );
   }
 
-  
-  
+  function addScore() {
+    if (modalAnimeScore < 10) {
+      setAnimeScore(modalAnimeScore + 1);
+    }
+  }
+
+  function subScore() {
+    if (modalAnimeScore > 0) {
+      setAnimeScore(modalAnimeScore - 1);
+    }
+  }
+
+  function addEpisode() {
+    if (modalAnimeEpisodeWatched < modalAnimeEpisodeCount) {
+      setAnimeEpisodeWatched(modalAnimeEpisodeWatched + 1);
+    }
+  }
+
+  function subEpisode() {
+    if (modalAnimeEpisodeWatched > 0) {
+      setAnimeEpisodeWatched(modalAnimeEpisodeWatched - 1);
+    }
+  }
+
   let subtitle: { style: { color: string } };
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -38,18 +52,10 @@ export default function Season_Carousel({ animes }) {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    
   }
 
   function closeModal() {
     setIsOpen(false);
-  }
-
-  function addScore() {
-    let animeScore = modalAnimeScore + 1
-    
-    console.log("PEE")
-    return modalAnimeScore = animeScore
   }
 
   return (
@@ -61,7 +67,6 @@ export default function Season_Carousel({ animes }) {
           onRequestClose={closeModal}
           ariaHideApp={false}
           contentLabel="Example Modal"
-          className=""
         >
           <div className="card card-side bg-base-100 shadow-xl h-[500px]">
             <figure>
@@ -74,9 +79,7 @@ export default function Season_Carousel({ animes }) {
             <div className="card-body">
               <h2 className="card-title">{modalAnimeName}</h2>
               <p>{modalAnimeDescription}</p>
-
               Pee
-              
               <div className="">
                 <div className="justify-center flex">Score</div>
                 <div className="justify-center items-center flex">
@@ -84,23 +87,30 @@ export default function Season_Carousel({ animes }) {
                 </div>
 
                 <div className="card-actions justify-center flex">
-                  <button className="w-[50px] bg-smooth-blue">-</button>
-                  <button className="w-[50px] bg-smooth-blue" onClick={addScore}>+</button>
+                  <button
+                    className="w-[50px] bg-smooth-blue"
+                    onClick={subScore}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="w-[50px] bg-smooth-blue"
+                    onClick={addScore}
+                  >
+                    +
+                  </button>
                 </div>
 
                 <div className="justify-center flex">Episodes</div>
                 <div className="justify-center items-center flex">
-                  {"0 / " + modalAnimeEpisodeCount}
+                  {modalAnimeEpisodeWatched + " / " + modalAnimeEpisodeCount}
                 </div>
 
                 <div className="card-actions justify-center flex">
-                  <button className="w-[50px] bg-smooth-blue">-</button>
-                  <button className="w-[50px] bg-smooth-blue">+</button>
+                  <button className="w-[50px] bg-smooth-blue" onClick={subEpisode}>-</button>
+                  <button className="w-[50px] bg-smooth-blue" onClick={addEpisode}>+</button>
                 </div>
               </div>
-
-              
-
             </div>
           </div>
         </Modal>
@@ -125,6 +135,7 @@ export default function Season_Carousel({ animes }) {
           src={"imgs/poster_" + animes[2].id + ".png"}
           alt="Poster3"
         />
+
         <img
           onClick={() => changeModalAnime(3)}
           className="w-[250px] h-[350px] pl-16"
