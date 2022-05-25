@@ -2,21 +2,102 @@ import React from "react";
 import { useState } from "react";
 import Modal from "react-modal";
 
-export default function Season_Carousel({ animes }) {
-  let [modalAnimePoster, setAnimePoster] = useState("");
+export default function Season_Carousel({ animes }: any) {
+  let [animeState, setAnimeState] = useState("");
+  let [animeId, setListAnimeId] = useState(0);
+  let [modalAnimeId, setAnimeId] = useState("");
   let [modalAnimeName, setAnimeName] = useState("");
   let [modalAnimeDescription, setAnimeDescription] = useState("");
   let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = useState(0);
   let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = useState(0);
   let [modalAnimeScore, setAnimeScore] = useState(0);
+  let [isEpisodeHidden, setEpisodeHidden] = useState("hidden");
+  let [isAddAnimeHidden, setAddAnimeHidden] = useState("btn");
 
   function changeModalAnime(id: number) {
-    setAnimePoster(animes[id].id)
-    setAnimeName(animes[id].en_title)
-    setAnimeDescription(animes[id].synopsis)
-    setAnimeEpisodeCount(animes[id].episode_count)
+    fetch("http://localhost:3011/searchAnimeOnList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(animes[id]),
+    })
+      .then((data) => {
+        return data.json();
+      })
+      .then((post) => {
+        if (post == true) {
+          fetch("http://localhost:3011/getEpisodesAndScore", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(animes[id]),
+          })
+            .then((data) => {
+              return data.json();
+            })
+            .then((post) => {
+              console.log(post)
+            })
 
+          console.log("ta na lista");
+          setEpisodeHidden("");
+          setAddAnimeHidden("hidden");
+        } else {
+          console.log("não ta na lista");
+          setEpisodeHidden("hidden");
+          setAddAnimeHidden("btn");
+        }
+      });
+
+    setAnimeId(animes[id].id);
+    setAnimeName(animes[id].en_title);
+    setAnimeDescription(animes[id].synopsis);
+    setAnimeEpisodeCount(animes[id].episode_count);
+
+    setListAnimeId(id);
     openModal();
+  }
+
+  function gettingAnimeState(event: {
+    target: { value: React.SetStateAction<string> };
+  }) {
+    setAnimeState(event.target.value);
+  }
+
+  function saveData() {
+    let listData = [
+      {
+        id: animes[animeId].id,
+        animeState: animeState,
+        score: modalAnimeScore,
+        episodesWatched: modalAnimeEpisodeWatched,
+      },
+    ];
+
+    console.log(listData);
+
+    fetch("http://localhost:3011/postListData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listData),
+    });
+  }
+
+  function addToList() {
+    fetch("http://localhost:3011/addAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(animes[animeId]),
+    });
+
+    setEpisodeHidden("");
+    setAddAnimeHidden("hidden");
   }
 
   function addScore() {
@@ -72,20 +153,42 @@ export default function Season_Carousel({ animes }) {
             <figure>
               <img
                 className="w-[300px]"
-                src={"imgs/poster_" + modalAnimePoster + ".png"}
+                src={"imgs/poster_" + modalAnimeId + ".png"}
                 alt="Poster1"
               />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{modalAnimeName}</h2>
               <p>{modalAnimeDescription}</p>
-              Pee
-              <div className="">
+              <div className={isAddAnimeHidden} onClick={addToList}>
+                Add to List{" "}
+              </div>
+              {/* add to list button */}
+
+              <div className="card-actions justify-center flex">
+                <datalist id="states">
+                  <option value={"Watching"} />
+                  <option value={"Plan To Watch"} />
+                  <option value={"Completed"} />
+                  <option value={"On Hold"} />
+                  <option value={"Dropped"} />
+                </datalist>
+                <div className="justify-center flex">Anime State</div>
+                <form>
+                  <input
+                    onChange={gettingAnimeState}
+                    list="states"
+                    className="justify-center items-center flex"
+                  ></input>
+                </form>
+              </div>
+
+              <div className={isEpisodeHidden}>
                 <div className="justify-center flex">Score</div>
                 <div className="justify-center items-center flex">
                   {modalAnimeScore + " / 10"}
                 </div>
-
+                {/* score thing */}
                 <div className="card-actions justify-center flex">
                   <button
                     className="w-[50px] bg-smooth-blue"
@@ -100,16 +203,36 @@ export default function Season_Carousel({ animes }) {
                     +
                   </button>
                 </div>
-
+                {/* add and remove score */}
                 <div className="justify-center flex">Episodes</div>
                 <div className="justify-center items-center flex">
                   {modalAnimeEpisodeWatched + " / " + modalAnimeEpisodeCount}
                 </div>
-
+                {/* episodes watched */}
                 <div className="card-actions justify-center flex">
-                  <button className="w-[50px] bg-smooth-blue" onClick={subEpisode}>-</button>
-                  <button className="w-[50px] bg-smooth-blue" onClick={addEpisode}>+</button>
+                  <button
+                    className="w-[50px] bg-smooth-blue"
+                    onClick={subEpisode}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="w-[50px] bg-smooth-blue"
+                    onClick={addEpisode}
+                  >
+                    +
+                  </button>
                 </div>
+                {/* add and remove episodes */}
+
+                <div className="card-actions justify-end flex">
+                  <div className="btn" onClick={saveData}>
+                    Save
+                  </div>
+                  <div className="btn">Remove Anime From List</div>
+                </div>
+
+                {/* Remove Anime From List Button */}
               </div>
             </div>
           </div>

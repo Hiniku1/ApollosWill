@@ -193,18 +193,85 @@ var import_react3 = __toESM(require("react"));
 var import_react4 = require("react");
 var import_react_modal = __toESM(require("react-modal"));
 function Season_Carousel({ animes }) {
-  let [modalAnimePoster, setAnimePoster] = (0, import_react4.useState)("");
+  let [animeState, setAnimeState] = (0, import_react4.useState)("");
+  let [animeId, setListAnimeId] = (0, import_react4.useState)(0);
+  let [modalAnimeId, setAnimeId] = (0, import_react4.useState)("");
   let [modalAnimeName, setAnimeName] = (0, import_react4.useState)("");
   let [modalAnimeDescription, setAnimeDescription] = (0, import_react4.useState)("");
   let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = (0, import_react4.useState)(0);
   let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = (0, import_react4.useState)(0);
   let [modalAnimeScore, setAnimeScore] = (0, import_react4.useState)(0);
+  let [isEpisodeHidden, setEpisodeHidden] = (0, import_react4.useState)("hidden");
+  let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react4.useState)("btn");
   function changeModalAnime(id) {
-    setAnimePoster(animes[id].id);
+    fetch("http://localhost:3011/searchAnimeOnList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[id])
+    }).then((data) => {
+      return data.json();
+    }).then((post) => {
+      if (post == true) {
+        fetch("http://localhost:3011/getEpisodesAndScore", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(animes[id])
+        }).then((data) => {
+          return data.json();
+        }).then((post2) => {
+          console.log(post2);
+        });
+        console.log("ta na lista");
+        setEpisodeHidden("");
+        setAddAnimeHidden("hidden");
+      } else {
+        console.log("n\xE3o ta na lista");
+        setEpisodeHidden("hidden");
+        setAddAnimeHidden("btn");
+      }
+    });
+    setAnimeId(animes[id].id);
     setAnimeName(animes[id].en_title);
     setAnimeDescription(animes[id].synopsis);
     setAnimeEpisodeCount(animes[id].episode_count);
+    setListAnimeId(id);
     openModal();
+  }
+  function gettingAnimeState(event) {
+    setAnimeState(event.target.value);
+  }
+  function saveData() {
+    let listData = [
+      {
+        id: animes[animeId].id,
+        animeState,
+        score: modalAnimeScore,
+        episodesWatched: modalAnimeEpisodeWatched
+      }
+    ];
+    console.log(listData);
+    fetch("http://localhost:3011/postListData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(listData)
+    });
+  }
+  function addToList() {
+    fetch("http://localhost:3011/addAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[animeId])
+    });
+    setEpisodeHidden("");
+    setAddAnimeHidden("hidden");
   }
   function addScore() {
     if (modalAnimeScore < 10) {
@@ -248,14 +315,37 @@ function Season_Carousel({ animes }) {
     className: "card card-side bg-base-100 shadow-xl h-[500px]"
   }, /* @__PURE__ */ import_react3.default.createElement("figure", null, /* @__PURE__ */ import_react3.default.createElement("img", {
     className: "w-[300px]",
-    src: "imgs/poster_" + modalAnimePoster + ".png",
+    src: "imgs/poster_" + modalAnimeId + ".png",
     alt: "Poster1"
   })), /* @__PURE__ */ import_react3.default.createElement("div", {
     className: "card-body"
   }, /* @__PURE__ */ import_react3.default.createElement("h2", {
     className: "card-title"
-  }, modalAnimeName), /* @__PURE__ */ import_react3.default.createElement("p", null, modalAnimeDescription), "Pee", /* @__PURE__ */ import_react3.default.createElement("div", {
-    className: ""
+  }, modalAnimeName), /* @__PURE__ */ import_react3.default.createElement("p", null, modalAnimeDescription), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: isAddAnimeHidden,
+    onClick: addToList
+  }, "Add to List", " "), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "card-actions justify-center flex"
+  }, /* @__PURE__ */ import_react3.default.createElement("datalist", {
+    id: "states"
+  }, /* @__PURE__ */ import_react3.default.createElement("option", {
+    value: "Watching"
+  }), /* @__PURE__ */ import_react3.default.createElement("option", {
+    value: "Plan To Watch"
+  }), /* @__PURE__ */ import_react3.default.createElement("option", {
+    value: "Completed"
+  }), /* @__PURE__ */ import_react3.default.createElement("option", {
+    value: "On Hold"
+  }), /* @__PURE__ */ import_react3.default.createElement("option", {
+    value: "Dropped"
+  })), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "justify-center flex"
+  }, "Anime State"), /* @__PURE__ */ import_react3.default.createElement("form", null, /* @__PURE__ */ import_react3.default.createElement("input", {
+    onChange: gettingAnimeState,
+    list: "states",
+    className: "justify-center items-center flex"
+  }))), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: isEpisodeHidden
   }, /* @__PURE__ */ import_react3.default.createElement("div", {
     className: "justify-center flex"
   }, "Score"), /* @__PURE__ */ import_react3.default.createElement("div", {
@@ -280,7 +370,14 @@ function Season_Carousel({ animes }) {
   }, "-"), /* @__PURE__ */ import_react3.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: addEpisode
-  }, "+"))))))), /* @__PURE__ */ import_react3.default.createElement("div", {
+  }, "+")), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "card-actions justify-end flex"
+  }, /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "btn",
+    onClick: saveData
+  }, "Save"), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "btn"
+  }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react3.default.createElement("div", {
     id: "season-1",
     className: "carousel-item relative w-full scroll-mt-36"
   }, /* @__PURE__ */ import_react3.default.createElement("img", {
@@ -941,18 +1038,85 @@ var import_react9 = __toESM(require("react"));
 var import_react10 = require("react");
 var import_react_modal4 = __toESM(require("react-modal"));
 function Season_Carousel2({ animes }) {
-  let [modalAnimePoster, setAnimePoster] = (0, import_react10.useState)("");
+  let [animeState, setAnimeState] = (0, import_react10.useState)("");
+  let [animeId, setListAnimeId] = (0, import_react10.useState)(0);
+  let [modalAnimeId, setAnimeId] = (0, import_react10.useState)("");
   let [modalAnimeName, setAnimeName] = (0, import_react10.useState)("");
   let [modalAnimeDescription, setAnimeDescription] = (0, import_react10.useState)("");
   let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = (0, import_react10.useState)(0);
   let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = (0, import_react10.useState)(0);
   let [modalAnimeScore, setAnimeScore] = (0, import_react10.useState)(0);
+  let [isEpisodeHidden, setEpisodeHidden] = (0, import_react10.useState)("hidden");
+  let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react10.useState)("btn");
   function changeModalAnime(id) {
-    setAnimePoster(animes[id].id);
+    fetch("http://localhost:3011/searchAnimeOnList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[id])
+    }).then((data) => {
+      return data.json();
+    }).then((post) => {
+      if (post == true) {
+        fetch("http://localhost:3011/getEpisodesAndScore", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(animes[id])
+        }).then((data) => {
+          return data.json();
+        }).then((post2) => {
+          console.log(post2);
+        });
+        console.log("ta na lista");
+        setEpisodeHidden("");
+        setAddAnimeHidden("hidden");
+      } else {
+        console.log("n\xE3o ta na lista");
+        setEpisodeHidden("hidden");
+        setAddAnimeHidden("btn");
+      }
+    });
+    setAnimeId(animes[id].id);
     setAnimeName(animes[id].en_title);
     setAnimeDescription(animes[id].synopsis);
     setAnimeEpisodeCount(animes[id].episode_count);
+    setListAnimeId(id);
     openModal();
+  }
+  function gettingAnimeState(event) {
+    setAnimeState(event.target.value);
+  }
+  function saveData() {
+    let listData = [
+      {
+        id: animes[animeId].id,
+        animeState,
+        score: modalAnimeScore,
+        episodesWatched: modalAnimeEpisodeWatched
+      }
+    ];
+    console.log(listData);
+    fetch("http://localhost:3011/postListData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(listData)
+    });
+  }
+  function addToList() {
+    fetch("http://localhost:3011/addAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[animeId])
+    });
+    setEpisodeHidden("");
+    setAddAnimeHidden("hidden");
   }
   function addScore() {
     if (modalAnimeScore < 10) {
@@ -996,14 +1160,37 @@ function Season_Carousel2({ animes }) {
     className: "card card-side bg-base-100 shadow-xl h-[500px]"
   }, /* @__PURE__ */ import_react9.default.createElement("figure", null, /* @__PURE__ */ import_react9.default.createElement("img", {
     className: "w-[300px]",
-    src: "imgs/poster_" + modalAnimePoster + ".png",
+    src: "imgs/poster_" + modalAnimeId + ".png",
     alt: "Poster1"
   })), /* @__PURE__ */ import_react9.default.createElement("div", {
     className: "card-body"
   }, /* @__PURE__ */ import_react9.default.createElement("h2", {
     className: "card-title"
-  }, modalAnimeName), /* @__PURE__ */ import_react9.default.createElement("p", null, modalAnimeDescription), "Pee", /* @__PURE__ */ import_react9.default.createElement("div", {
-    className: ""
+  }, modalAnimeName), /* @__PURE__ */ import_react9.default.createElement("p", null, modalAnimeDescription), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: isAddAnimeHidden,
+    onClick: addToList
+  }, "Add to List", " "), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "card-actions justify-center flex"
+  }, /* @__PURE__ */ import_react9.default.createElement("datalist", {
+    id: "states"
+  }, /* @__PURE__ */ import_react9.default.createElement("option", {
+    value: "Watching"
+  }), /* @__PURE__ */ import_react9.default.createElement("option", {
+    value: "Plan To Watch"
+  }), /* @__PURE__ */ import_react9.default.createElement("option", {
+    value: "Completed"
+  }), /* @__PURE__ */ import_react9.default.createElement("option", {
+    value: "On Hold"
+  }), /* @__PURE__ */ import_react9.default.createElement("option", {
+    value: "Dropped"
+  })), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "justify-center flex"
+  }, "Anime State"), /* @__PURE__ */ import_react9.default.createElement("form", null, /* @__PURE__ */ import_react9.default.createElement("input", {
+    onChange: gettingAnimeState,
+    list: "states",
+    className: "justify-center items-center flex"
+  }))), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: isEpisodeHidden
   }, /* @__PURE__ */ import_react9.default.createElement("div", {
     className: "justify-center flex"
   }, "Score"), /* @__PURE__ */ import_react9.default.createElement("div", {
@@ -1028,7 +1215,14 @@ function Season_Carousel2({ animes }) {
   }, "-"), /* @__PURE__ */ import_react9.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: addEpisode
-  }, "+"))))))), /* @__PURE__ */ import_react9.default.createElement("div", {
+  }, "+")), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "card-actions justify-end flex"
+  }, /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "btn",
+    onClick: saveData
+  }, "Save"), /* @__PURE__ */ import_react9.default.createElement("div", {
+    className: "btn"
+  }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react9.default.createElement("div", {
     id: "season-1",
     className: "carousel-item relative w-full scroll-mt-36"
   }, /* @__PURE__ */ import_react9.default.createElement("img", {
@@ -1533,7 +1727,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "dc1627dd", "entry": { "module": "/build/entry.client-TB2X2JCE.js", "imports": ["/build/_shared/chunk-TF7DY7FC.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-5VZ2JBZG.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-5JB54VEE.js", "imports": ["/build/_shared/chunk-O45ZP5NV.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-NEQSYC5A.js", "imports": ["/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-CNMLF5LQ.js", "imports": ["/build/_shared/chunk-ZZMRS7KT.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-M3JNTVRB.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-ZZMRS7KT.js", "/build/_shared/chunk-O45ZP5NV.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-HKXNXPAE.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-DC1627DD.js" };
+var assets_manifest_default = { "version": "71f512bf", "entry": { "module": "/build/entry.client-4PK4VBJ4.js", "imports": ["/build/_shared/chunk-7CZMI56X.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-5VZ2JBZG.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-LKSREDYL.js", "imports": ["/build/_shared/chunk-G5SLLEPG.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-INNMENHJ.js", "imports": ["/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-RODCDJEW.js", "imports": ["/build/_shared/chunk-RJ4BTSIO.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-Q5LRWRTN.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-RJ4BTSIO.js", "/build/_shared/chunk-G5SLLEPG.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-EVNUERIG.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-HKXNXPAE.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-71F512BF.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
