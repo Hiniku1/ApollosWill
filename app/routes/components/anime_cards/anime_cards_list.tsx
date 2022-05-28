@@ -1,4 +1,10 @@
 export default function Anime_Cards_List() {
+    
+    
+    
+    
+    
+    
     return (
         <div className="w-full h-full">
             <div className="w-full h-full flex justify-center items-center pt-16">

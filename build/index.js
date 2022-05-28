@@ -203,6 +203,15 @@ function Season_Carousel({ animes }) {
   let [modalAnimeScore, setAnimeScore] = (0, import_react4.useState)(0);
   let [isEpisodeHidden, setEpisodeHidden] = (0, import_react4.useState)("hidden");
   let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react4.useState)("btn");
+  let [isStateHidden, setStateHidden] = (0, import_react4.useState)("hidden");
+  let listData = [
+    {
+      id: animes[animeId].id,
+      animeState,
+      score: modalAnimeScore,
+      episodesWatched: modalAnimeEpisodeWatched
+    }
+  ];
   function changeModalAnime(id) {
     fetch("http://localhost:3011/searchAnimeOnList", {
       method: "POST",
@@ -224,6 +233,8 @@ function Season_Carousel({ animes }) {
           return data.json();
         }).then((post2) => {
           console.log(post2);
+          setAnimeEpisodeWatched(post2.episodes_watched);
+          setAnimeScore(post2.rating);
         });
         console.log("ta na lista");
         setEpisodeHidden("");
@@ -245,15 +256,6 @@ function Season_Carousel({ animes }) {
     setAnimeState(event.target.value);
   }
   function saveData() {
-    let listData = [
-      {
-        id: animes[animeId].id,
-        animeState,
-        score: modalAnimeScore,
-        episodesWatched: modalAnimeEpisodeWatched
-      }
-    ];
-    console.log(listData);
     fetch("http://localhost:3011/postListData", {
       method: "POST",
       headers: {
@@ -272,6 +274,19 @@ function Season_Carousel({ animes }) {
     });
     setEpisodeHidden("");
     setAddAnimeHidden("hidden");
+    setStateHidden("justify-center flex");
+  }
+  function removeOfList() {
+    fetch("http://localhost:3011/removeAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[animeId])
+    });
+    setEpisodeHidden("hidden");
+    setAddAnimeHidden("btn");
+    setStateHidden("hidden");
   }
   function addScore() {
     if (modalAnimeScore < 10) {
@@ -339,11 +354,11 @@ function Season_Carousel({ animes }) {
   }), /* @__PURE__ */ import_react3.default.createElement("option", {
     value: "Dropped"
   })), /* @__PURE__ */ import_react3.default.createElement("div", {
-    className: "justify-center flex"
+    className: isStateHidden
   }, "Anime State"), /* @__PURE__ */ import_react3.default.createElement("form", null, /* @__PURE__ */ import_react3.default.createElement("input", {
     onChange: gettingAnimeState,
     list: "states",
-    className: "justify-center items-center flex"
+    className: isStateHidden
   }))), /* @__PURE__ */ import_react3.default.createElement("div", {
     className: isEpisodeHidden
   }, /* @__PURE__ */ import_react3.default.createElement("div", {
@@ -376,7 +391,8 @@ function Season_Carousel({ animes }) {
     className: "btn",
     onClick: saveData
   }, "Save"), /* @__PURE__ */ import_react3.default.createElement("div", {
-    className: "btn"
+    className: "btn",
+    onClick: removeOfList
   }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react3.default.createElement("div", {
     id: "season-1",
     className: "carousel-item relative w-full scroll-mt-36"
@@ -1048,6 +1064,15 @@ function Season_Carousel2({ animes }) {
   let [modalAnimeScore, setAnimeScore] = (0, import_react10.useState)(0);
   let [isEpisodeHidden, setEpisodeHidden] = (0, import_react10.useState)("hidden");
   let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react10.useState)("btn");
+  let [isStateHidden, setStateHidden] = (0, import_react10.useState)("hidden");
+  let listData = [
+    {
+      id: animes[animeId].id,
+      animeState,
+      score: modalAnimeScore,
+      episodesWatched: modalAnimeEpisodeWatched
+    }
+  ];
   function changeModalAnime(id) {
     fetch("http://localhost:3011/searchAnimeOnList", {
       method: "POST",
@@ -1069,6 +1094,8 @@ function Season_Carousel2({ animes }) {
           return data.json();
         }).then((post2) => {
           console.log(post2);
+          setAnimeEpisodeWatched(post2.episodes_watched);
+          setAnimeScore(post2.rating);
         });
         console.log("ta na lista");
         setEpisodeHidden("");
@@ -1090,15 +1117,6 @@ function Season_Carousel2({ animes }) {
     setAnimeState(event.target.value);
   }
   function saveData() {
-    let listData = [
-      {
-        id: animes[animeId].id,
-        animeState,
-        score: modalAnimeScore,
-        episodesWatched: modalAnimeEpisodeWatched
-      }
-    ];
-    console.log(listData);
     fetch("http://localhost:3011/postListData", {
       method: "POST",
       headers: {
@@ -1117,6 +1135,19 @@ function Season_Carousel2({ animes }) {
     });
     setEpisodeHidden("");
     setAddAnimeHidden("hidden");
+    setStateHidden("justify-center flex");
+  }
+  function removeOfList() {
+    fetch("http://localhost:3011/removeAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(animes[animeId])
+    });
+    setEpisodeHidden("hidden");
+    setAddAnimeHidden("btn");
+    setStateHidden("hidden");
   }
   function addScore() {
     if (modalAnimeScore < 10) {
@@ -1184,11 +1215,11 @@ function Season_Carousel2({ animes }) {
   }), /* @__PURE__ */ import_react9.default.createElement("option", {
     value: "Dropped"
   })), /* @__PURE__ */ import_react9.default.createElement("div", {
-    className: "justify-center flex"
+    className: isStateHidden
   }, "Anime State"), /* @__PURE__ */ import_react9.default.createElement("form", null, /* @__PURE__ */ import_react9.default.createElement("input", {
     onChange: gettingAnimeState,
     list: "states",
-    className: "justify-center items-center flex"
+    className: isStateHidden
   }))), /* @__PURE__ */ import_react9.default.createElement("div", {
     className: isEpisodeHidden
   }, /* @__PURE__ */ import_react9.default.createElement("div", {
@@ -1221,7 +1252,8 @@ function Season_Carousel2({ animes }) {
     className: "btn",
     onClick: saveData
   }, "Save"), /* @__PURE__ */ import_react9.default.createElement("div", {
-    className: "btn"
+    className: "btn",
+    onClick: removeOfList
   }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react9.default.createElement("div", {
     id: "season-1",
     className: "carousel-item relative w-full scroll-mt-36"
@@ -1727,7 +1759,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "71f512bf", "entry": { "module": "/build/entry.client-4PK4VBJ4.js", "imports": ["/build/_shared/chunk-7CZMI56X.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-5VZ2JBZG.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-LKSREDYL.js", "imports": ["/build/_shared/chunk-G5SLLEPG.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-INNMENHJ.js", "imports": ["/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-RODCDJEW.js", "imports": ["/build/_shared/chunk-RJ4BTSIO.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-Q5LRWRTN.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-RJ4BTSIO.js", "/build/_shared/chunk-G5SLLEPG.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-EVNUERIG.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-HKXNXPAE.js", "imports": ["/build/_shared/chunk-7AKHK2LP.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-71F512BF.js" };
+var assets_manifest_default = { "version": "83849be2", "entry": { "module": "/build/entry.client-TB2X2JCE.js", "imports": ["/build/_shared/chunk-TF7DY7FC.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-DCAHJRPP.js", "imports": ["/build/_shared/chunk-5OHEOX6Z.js", "/build/_shared/chunk-NERXHAOO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-6C76T47Z.js", "imports": ["/build/_shared/chunk-COEKNX6V.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-NEQSYC5A.js", "imports": ["/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-JF6VAJAG.js", "imports": ["/build/_shared/chunk-O2NZBEM4.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-NZ4DHYWT.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-O2NZBEM4.js", "/build/_shared/chunk-COEKNX6V.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-7TGOFMO5.js", "imports": ["/build/_shared/chunk-5OHEOX6Z.js", "/build/_shared/chunk-NERXHAOO.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-83849BE2.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

@@ -13,6 +13,16 @@ export default function Season_Carousel({ animes }: any) {
   let [modalAnimeScore, setAnimeScore] = useState(0);
   let [isEpisodeHidden, setEpisodeHidden] = useState("hidden");
   let [isAddAnimeHidden, setAddAnimeHidden] = useState("btn");
+  let [isStateHidden, setStateHidden] = useState("hidden")
+
+  let listData = [
+    {
+      id: animes[animeId].id,
+      animeState: animeState,
+      score: modalAnimeScore,
+      episodesWatched: modalAnimeEpisodeWatched,
+    },
+  ];
 
   function changeModalAnime(id: number) {
     fetch("http://localhost:3011/searchAnimeOnList", {
@@ -38,8 +48,10 @@ export default function Season_Carousel({ animes }: any) {
               return data.json();
             })
             .then((post) => {
-              console.log(post)
-            })
+              console.log(post);
+              setAnimeEpisodeWatched(post.episodes_watched);
+              setAnimeScore(post.rating);
+            });
 
           console.log("ta na lista");
           setEpisodeHidden("");
@@ -67,17 +79,6 @@ export default function Season_Carousel({ animes }: any) {
   }
 
   function saveData() {
-    let listData = [
-      {
-        id: animes[animeId].id,
-        animeState: animeState,
-        score: modalAnimeScore,
-        episodesWatched: modalAnimeEpisodeWatched,
-      },
-    ];
-
-    console.log(listData);
-
     fetch("http://localhost:3011/postListData", {
       method: "POST",
       headers: {
@@ -98,6 +99,22 @@ export default function Season_Carousel({ animes }: any) {
 
     setEpisodeHidden("");
     setAddAnimeHidden("hidden");
+    setStateHidden("justify-center flex")
+  }
+
+  function removeOfList(){
+    fetch("http://localhost:3011/removeAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(animes[animeId]),
+    });
+    
+    
+    setEpisodeHidden("hidden");
+    setAddAnimeHidden("btn");
+    setStateHidden("hidden")
   }
 
   function addScore() {
@@ -173,12 +190,12 @@ export default function Season_Carousel({ animes }: any) {
                   <option value={"On Hold"} />
                   <option value={"Dropped"} />
                 </datalist>
-                <div className="justify-center flex">Anime State</div>
+                <div className={isStateHidden}>Anime State</div>
                 <form>
                   <input
                     onChange={gettingAnimeState}
                     list="states"
-                    className="justify-center items-center flex"
+                    className={isStateHidden}
                   ></input>
                 </form>
               </div>
@@ -229,7 +246,7 @@ export default function Season_Carousel({ animes }: any) {
                   <div className="btn" onClick={saveData}>
                     Save
                   </div>
-                  <div className="btn">Remove Anime From List</div>
+                  <div className="btn" onClick={removeOfList}>Remove Anime From List</div>
                 </div>
 
                 {/* Remove Anime From List Button */}
