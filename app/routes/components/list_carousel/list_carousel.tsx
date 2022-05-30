@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
+export default function List_Carousel({ listAnimes }: any) {
+  let [animeState, setAnimeState] = useState("");
+  let [animeId, setListAnimeId] = useState(0);
+  let [modalAnimeId, setAnimeId] = useState("");
+  let [modalAnimeName, setAnimeName] = useState("");
+  let [modalAnimeDescription, setAnimeDescription] = useState("");
+  let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = useState(0);
+  let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = useState(0);
+  let [modalAnimeScore, setAnimeScore] = useState(0);
+  let [isEpisodeHidden, setEpisodeHidden] = useState("hidden");
+  let [isAddAnimeHidden, setAddAnimeHidden] = useState("btn");
+  let [isStateHidden, setStateHidden] = useState("hidden")
 
-
-
-export default function List_Carousel() {
-  let subtitle: { style: { color: string } };
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -13,13 +21,13 @@ export default function List_Carousel() {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
   }
 
   function closeModal() {
     setIsOpen(false);
   }
+
+
   return (
     <div className="carousel w-full">
       <div className="">
@@ -31,7 +39,7 @@ export default function List_Carousel() {
           className=""
         >
           <div className="card card-side bg-base-100 shadow-xl h-[500px] mr-10">
-                    <figure><img className="w-[300px]" src={require("public/imgs/Poster1.jpg")} alt="Poster1" /></figure>
+                    <figure><img className="w-[300px]" src={"imgs/poster_" + listAnimes[0].id_anime + ".png"} alt="Poster1" /></figure>
                     <div className="card-body w-[300px]">
                         <h2 className="card-title">Anime_Name</h2>
                         <p>Something Something</p>
@@ -48,25 +56,25 @@ export default function List_Carousel() {
         <img
           onClick={openModal}
           className="w-[250px] h-[350px] pl-16"
-          src={require("public/imgs/Poster1.jpg")}
+          src={"imgs/poster_" + listAnimes[0].id_anime + ".png"}
           alt="Poster1"
         />
         <img
           onClick={openModal}
           className="w-[250px] h-[350px] pl-16"
-          src={require("public/imgs/Poster2.jpg")}
+          src={"imgs/poster_" + listAnimes[0].id_anime + ".png"}
           alt="Poster2"
         />
         <img
           onClick={openModal}
           className="w-[250px] h-[350px] pl-16"
-          src={require("public/imgs/Poster3.jpg")}
+          src={"imgs/poster_" + listAnimes[0].id_anime + ".png"}
           alt="Poster3"
         />
         <img
           onClick={openModal}
           className="w-[250px] h-[350px] pl-16"
-          src={require("public/imgs/Poster4.jpg")}
+          src={"imgs/poster_" + listAnimes[0].id_anime + ".png"}
           alt="Poster4"
         />
         <img

@@ -3,6 +3,8 @@ import { useState } from "react";
 import Modal from "react-modal";
 
 export default function Season_Carousel({ animes }: any) {
+  let [idk, setIdk] = useState("")
+   
   let [animeState, setAnimeState] = useState("");
   let [animeId, setListAnimeId] = useState(0);
   let [modalAnimeId, setAnimeId] = useState("");
@@ -50,16 +52,18 @@ export default function Season_Carousel({ animes }: any) {
             .then((post) => {
               console.log(post);
               setAnimeEpisodeWatched(post.episodes_watched);
-              setAnimeScore(post.rating);
+
             });
 
           console.log("ta na lista");
           setEpisodeHidden("");
           setAddAnimeHidden("hidden");
+          setStateHidden("justify-center flex")
         } else {
           console.log("não ta na lista");
           setEpisodeHidden("hidden");
           setAddAnimeHidden("btn");
+          setStateHidden("hidden")
         }
       });
 
@@ -67,7 +71,7 @@ export default function Season_Carousel({ animes }: any) {
     setAnimeName(animes[id].en_title);
     setAnimeDescription(animes[id].synopsis);
     setAnimeEpisodeCount(animes[id].episode_count);
-
+    
     setListAnimeId(id);
     openModal();
   }
@@ -76,6 +80,7 @@ export default function Season_Carousel({ animes }: any) {
     target: { value: React.SetStateAction<string> };
   }) {
     setAnimeState(event.target.value);
+
   }
 
   function saveData() {
@@ -166,10 +171,10 @@ export default function Season_Carousel({ animes }: any) {
           ariaHideApp={false}
           contentLabel="Example Modal"
         >
-          <div className="card card-side bg-base-100 shadow-xl h-[500px]">
+          <div className="card card-side bg-base-100 h-[500px]">
             <figure>
               <img
-                className="w-[300px]"
+                className="w-[300px] h-[500px]"
                 src={"imgs/poster_" + modalAnimeId + ".png"}
                 alt="Poster1"
               />

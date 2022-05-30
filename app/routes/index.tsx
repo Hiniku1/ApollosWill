@@ -11,10 +11,13 @@ import { useLoaderData } from "@remix-run/react";
 export const loader = async () => {
   let conn;
   let seasonAnime = [];
+  let listAnime = [];
   try {
     conn = await pool.getConnection();
     
-    seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;")
+    seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;");
+
+    listAnime = await conn.query("SELECT User_List.id_user, User_List.id_anime, User_List.anime_state, User_List.rating, User_List.episodes_watched, Anime.synopsis FROM User_List INNER JOIN Anime ON User_List.id_anime = Anime.id WHERE id_user = ? AND anime_state = ?", [1, "Watching"])
     
     
 
@@ -22,12 +25,15 @@ export const loader = async () => {
     if (conn) conn.release(); //release to pool
   }
 
-  return seasonAnime;
+  return {
+    seasonAnime: seasonAnime,
+    listAnime: listAnime
+  }
 
 };
 
 export default function Index() {
-  const anime = useLoaderData()
+  const {seasonAnime, listAnime} = useLoaderData()
   return (
     <div className="bg-smooth-pink">
 
@@ -41,11 +47,11 @@ export default function Index() {
       </div>
 
       {/* the div where the Winter Season Anime goes */}
-      <h1 className="pl-20 pb-5 font-quicksand text-[24px]">Your List</h1>
+      <h1 className="pl-20 pb-5 font-quicksand text-[24px]">Animes You're Watching</h1>
       <div className="w-screen h-full flex items-center justify-center bg-smooth-blue">
         <div className=" w-full h-[500px] flex items-center justify-center">
           <div className="w-full h-[400px]">
-           <List_Carousel/>
+           <List_Carousel listAnimes={listAnime}/>
           </div>
         </div>
       </div>
@@ -55,7 +61,7 @@ export default function Index() {
         <div className=" w-full h-[500px] flex items-center justify-center">
           <div className="w-full h-[400px]">
           
-          <Season_Carousel animes={anime}/>
+          <Season_Carousel animes={seasonAnime}/>
 
           </div>
         </div>
