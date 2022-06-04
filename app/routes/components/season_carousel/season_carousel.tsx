@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Modal from "react-modal";
 
-export default function Season_Carousel({ animes }: any) {
-  let [idk, setIdk] = useState("")
-   
+export default function Season_Carousel({ animes, loginId }: any) {
+
   let [animeState, setAnimeState] = useState("");
   let [animeId, setListAnimeId] = useState(0);
   let [modalAnimeId, setAnimeId] = useState("");
@@ -23,6 +22,7 @@ export default function Season_Carousel({ animes }: any) {
       animeState: animeState,
       score: modalAnimeScore,
       episodesWatched: modalAnimeEpisodeWatched,
+      userId: loginId
     },
   ];
 
@@ -32,7 +32,10 @@ export default function Season_Carousel({ animes }: any) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(animes[id]),
+      body: JSON.stringify({
+        id: animes[id].id,
+        userId: loginId
+      }),
     })
       .then((data) => {
         return data.json();
@@ -44,7 +47,10 @@ export default function Season_Carousel({ animes }: any) {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(animes[id]),
+            body: JSON.stringify({
+              id: animes[id].id,
+              userId: loginId
+            }),
           })
             .then((data) => {
               return data.json();
@@ -52,10 +58,12 @@ export default function Season_Carousel({ animes }: any) {
             .then((post) => {
               console.log(post);
               setAnimeEpisodeWatched(post.episodes_watched);
+              setAnimeScore(post.rating)
 
             });
 
           console.log("ta na lista");
+          console.log(loginId)
           setEpisodeHidden("");
           setAddAnimeHidden("hidden");
           setStateHidden("justify-center flex")
@@ -89,7 +97,7 @@ export default function Season_Carousel({ animes }: any) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(listData),
+      body: JSON.stringify(listData[0]),
     });
   }
 
@@ -99,7 +107,10 @@ export default function Season_Carousel({ animes }: any) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(animes[animeId]),
+      body: JSON.stringify({
+        id: animes[animeId].id,
+        userId: loginId
+      }),
     });
 
     setEpisodeHidden("");
@@ -113,7 +124,10 @@ export default function Season_Carousel({ animes }: any) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(animes[animeId]),
+      body: JSON.stringify({
+        id: animes[animeId].id,
+        userId: loginId
+      }),
     });
     
     
