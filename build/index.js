@@ -64,6 +64,13 @@ var require_Banner4 = __commonJS({
   }
 });
 
+// public/imgs/search_1.jpg
+var require_search_1 = __commonJS({
+  "public/imgs/search_1.jpg"(exports, module2) {
+    module2.exports = "/build/_assets/search_1-ZVQ65TD3.jpg";
+  }
+});
+
 // public/imgs/Wallpaper.jpeg
 var require_Wallpaper = __commonJS({
   "public/imgs/Wallpaper.jpeg"(exports, module2) {
@@ -101,7 +108,7 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
   });
 }
 
-// route:/home/hiniku/ApollosWill/app/root.tsx
+// route:C:\ApollosWill\app\root.tsx
 var root_exports = {};
 __export(root_exports, {
   default: () => App,
@@ -110,9 +117,12 @@ __export(root_exports, {
 });
 
 // app/styles/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-33SB6CTZ.css";
+var tailwind_default = "/build/_assets/tailwind-JTRBZMUK.css";
 
-// route:/home/hiniku/ApollosWill/app/root.tsx
+// node_modules/react-responsive-carousel/lib/styles/carousel.min.css
+var carousel_min_default = "/build/_assets/carousel.min-PQ3VLNRO.css";
+
+// route:C:\ApollosWill\app\root.tsx
 var import_react2 = require("@remix-run/react");
 var meta = () => ({
   charset: "utf-8",
@@ -120,15 +130,18 @@ var meta = () => ({
   viewport: "width=device-width,initial-scale=1"
 });
 var links = () => [
-  { rel: "stylesheet", href: tailwind_default }
+  { rel: "stylesheet", href: tailwind_default },
+  { rel: "stylesheet", href: carousel_min_default }
 ];
 function App() {
   return /* @__PURE__ */ React.createElement("html", {
     lang: "en"
-  }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react2.Meta, null), /* @__PURE__ */ React.createElement(import_react2.Links, null)), /* @__PURE__ */ React.createElement("body", null, /* @__PURE__ */ React.createElement(import_react2.Outlet, null), /* @__PURE__ */ React.createElement(import_react2.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react2.Scripts, null), /* @__PURE__ */ React.createElement(import_react2.LiveReload, null)));
+  }, /* @__PURE__ */ React.createElement("head", null, /* @__PURE__ */ React.createElement(import_react2.Meta, null), /* @__PURE__ */ React.createElement(import_react2.Links, null)), /* @__PURE__ */ React.createElement("body", {
+    className: "bg-smooth-pink"
+  }, /* @__PURE__ */ React.createElement(import_react2.Outlet, null), /* @__PURE__ */ React.createElement(import_react2.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react2.Scripts, null), /* @__PURE__ */ React.createElement(import_react2.LiveReload, null)));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/season_carousel/season_carousel.tsx
+// route:C:\ApollosWill\app\routes\components\season_carousel\season_carousel.tsx
 var season_carousel_exports = {};
 __export(season_carousel_exports, {
   default: () => Season_Carousel
@@ -158,7 +171,7 @@ function Season_Carousel({ animes, loginId }) {
     }
   ];
   function changeModalAnime(id) {
-    fetch("http://localhost:3011/searchAnimeOnList", {
+    fetch("http://localhost:3011/searchAnime", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -204,6 +217,7 @@ function Season_Carousel({ animes, loginId }) {
     setAnimeDescription(animes[id].synopsis);
     setAnimeEpisodeCount(animes[id].episode_count);
     setListAnimeId(id);
+    console.log(id);
     openModal();
   }
   function gettingAnimeState(event) {
@@ -464,7 +478,7 @@ function Season_Carousel({ animes, loginId }) {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/anime_cards/anime_cards_list.tsx
+// route:C:\ApollosWill\app\routes\components\anime_cards\anime_cards_list.tsx
 var anime_cards_list_exports = {};
 __export(anime_cards_list_exports, {
   default: () => Anime_Cards_List
@@ -492,25 +506,66 @@ function Anime_Cards_List(listAnimes) {
   }, divs);
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/list_carousel/list_carousel.tsx
+// route:C:\ApollosWill\app\routes\components\list_carousel\list_carousel.tsx
 var list_carousel_exports = {};
 __export(list_carousel_exports, {
   default: () => List_Carousel
 });
+var import_react5 = __toESM(require("react"));
+var import_react_responsive_carousel = require("react-responsive-carousel");
+var import_react_modal2 = __toESM(require("react-modal"));
 function List_Carousel() {
-  return /* @__PURE__ */ React.createElement("div", null, "Pee");
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react5.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement(import_react_modal2.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    ariaHideApp: false,
+    contentLabel: "Example Modal"
+  }, /* @__PURE__ */ import_react5.default.createElement("div", null, "PEe")), /* @__PURE__ */ import_react5.default.createElement(import_react_responsive_carousel.Carousel, {
+    showThumbs: false,
+    centerMode: true,
+    swipeable: true
+  }, /* @__PURE__ */ import_react5.default.createElement("div", {
+    onClick: openModal,
+    className: "w-32"
+  }, /* @__PURE__ */ import_react5.default.createElement("img", {
+    src: "imgs/poster_1.png",
+    className: "h-[500px]"
+  }), /* @__PURE__ */ import_react5.default.createElement("p", {
+    className: "legend"
+  }, "Cowboy Bebop")), /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("img", {
+    src: "imgs/banner_3.png",
+    className: "w-[300px] h-[500px]"
+  }), /* @__PURE__ */ import_react5.default.createElement("p", {
+    className: "legend"
+  }, "Legend 1")), /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("img", {
+    src: "imgs/banner_1697.png",
+    className: "w-[300px] h-[500px]"
+  }), /* @__PURE__ */ import_react5.default.createElement("p", {
+    className: "legend"
+  }, "Lucky Stars"))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/modal/modal_anime.tsx
+// route:C:\ApollosWill\app\routes\components\modal\modal_anime.tsx
 var modal_anime_exports = {};
 __export(modal_anime_exports, {
   default: () => Modal_Anime
 });
-var import_react5 = __toESM(require("react"));
-var import_react_modal2 = __toESM(require("react-modal"));
+var import_react6 = __toESM(require("react"));
+var import_react_modal3 = __toESM(require("react-modal"));
 function Modal_Anime() {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = import_react5.default.useState(false);
+  const [modalIsOpen, setIsOpen] = import_react6.default.useState(false);
   function openModal() {
     setIsOpen(true);
   }
@@ -520,46 +575,48 @@ function Modal_Anime() {
   function closeModal() {
     setIsOpen(false);
   }
-  return /* @__PURE__ */ import_react5.default.createElement("div", {
+  return /* @__PURE__ */ import_react6.default.createElement("div", {
     className: ""
-  }, /* @__PURE__ */ import_react5.default.createElement("button", {
+  }, /* @__PURE__ */ import_react6.default.createElement("button", {
     onClick: openModal
-  }, "Open Modal"), /* @__PURE__ */ import_react5.default.createElement(import_react_modal2.default, {
+  }, "Open Modal"), /* @__PURE__ */ import_react6.default.createElement(import_react_modal3.default, {
     isOpen: modalIsOpen,
     onAfterOpen: afterOpenModal,
     onRequestClose: closeModal,
     contentLabel: "Example Modal"
-  }, /* @__PURE__ */ import_react5.default.createElement("button", {
+  }, /* @__PURE__ */ import_react6.default.createElement("button", {
     onClick: closeModal
-  }, "close"), /* @__PURE__ */ import_react5.default.createElement("div", null, "I am a modal"), /* @__PURE__ */ import_react5.default.createElement("form", null, /* @__PURE__ */ import_react5.default.createElement("input", null))));
+  }, "close"), /* @__PURE__ */ import_react6.default.createElement("div", null, "I am a modal"), /* @__PURE__ */ import_react6.default.createElement("form", null, /* @__PURE__ */ import_react6.default.createElement("input", null))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/navbar/Navbar.tsx
+// route:C:\ApollosWill\app\routes\components\navbar\Navbar.tsx
 var Navbar_exports = {};
 __export(Navbar_exports, {
   default: () => Navbar
 });
-var import_react6 = require("@remix-run/react");
+var import_react7 = require("@remix-run/react");
 function Navbar() {
   return /* @__PURE__ */ React.createElement("div", {
-    className: "w-screen h-[75px] z-10 bg-smooth-blue"
+    className: "w-screen h-[75px] bg-smooth-blue"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "px-2 flex justify-between items-center w-full h-full"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react6.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
     to: "/"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "font-quicksand mr-4 text-[24px]"
   }, "Apollo's Will")), /* @__PURE__ */ React.createElement("ul", {
     className: "hidden md:flex font-montserrat"
-  }, /* @__PURE__ */ React.createElement("li", null, "Anime Search"), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react7.Link, {
+    to: "/search_anime"
+  }, "Anime Search")), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "pr-4"
   }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
-    className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react6.Link, {
+    className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10 z-10"
+  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[100px]",
@@ -568,7 +625,7 @@ function Navbar() {
   }))))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/ender/Ender.tsx
+// route:C:\ApollosWill\app\routes\components\ender\Ender.tsx
 var Ender_exports = {};
 __export(Ender_exports, {
   default: () => Ender
@@ -579,7 +636,7 @@ function Ender() {
   }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/components/news/News.tsx
+// route:C:\ApollosWill\app\routes\components\news\News.tsx
 var News_exports = {};
 __export(News_exports, {
   default: () => News
@@ -650,7 +707,144 @@ function News() {
   }, "\u276F"))));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/index.tsx
+// route:C:\ApollosWill\app\routes\search_anime.tsx
+var search_anime_exports = {};
+__export(search_anime_exports, {
+  default: () => searchAnime
+});
+var import_react9 = require("@remix-run/react");
+var import_react10 = require("react");
+
+// app/routes/components/anime_cards/anime_cards_list.tsx
+function Anime_Cards_List2(listAnimes) {
+  const divs = [];
+  for (const anime of listAnimes.listAnimes) {
+    divs.push(/* @__PURE__ */ React.createElement("div", {
+      className: "w-full h-full flex justify-center items-center pt-16",
+      key: anime.id
+    }, /* @__PURE__ */ React.createElement("div", {
+      className: "card card-side bg-base-100 shadow-xl h-32 mr-10"
+    }, /* @__PURE__ */ React.createElement("figure", null, /* @__PURE__ */ React.createElement("img", {
+      className: "w-[91px]",
+      src: "imgs/poster_" + anime.id + ".png",
+      alt: "Poster"
+    })), /* @__PURE__ */ React.createElement("div", {
+      className: "card-body w-[700px]"
+    }, /* @__PURE__ */ React.createElement("h2", {
+      className: "card-title"
+    }, anime.en_jp_title), /* @__PURE__ */ React.createElement("p", null, "something")))));
+  }
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "w-full h-full"
+  }, divs);
+}
+
+// app/routes/components/ender/Ender.tsx
+function Ender2() {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "w-full h-[150px] bg-[#FBAFAF] flex items-center justify-center"
+  }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
+}
+
+// app/routes/components/navbar/Navbar.tsx
+var import_react8 = require("@remix-run/react");
+function Navbar2() {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "w-screen h-[75px] bg-smooth-blue"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "px-2 flex justify-between items-center w-full h-full"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "flex items-center pl-4"
+  }, /* @__PURE__ */ React.createElement(import_react8.Link, {
+    to: "/"
+  }, /* @__PURE__ */ React.createElement("h1", {
+    className: "font-quicksand mr-4 text-[24px]"
+  }, "Apollo's Will")), /* @__PURE__ */ React.createElement("ul", {
+    className: "hidden md:flex font-montserrat"
+  }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react8.Link, {
+    to: "/search_anime"
+  }, "Anime Search")), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React.createElement("h1", {
+    className: "pr-4"
+  }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
+    className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10 z-10"
+  }, /* @__PURE__ */ React.createElement(import_react8.Link, {
+    to: "/list"
+  }, /* @__PURE__ */ React.createElement("img", {
+    className: "rounded-3xl w-[100px]",
+    src: require_Icon(),
+    alt: "Icon"
+  }))))));
+}
+
+// route:C:\ApollosWill\app\routes\search_anime.tsx
+function searchAnime() {
+  let [search, setSearch] = (0, import_react10.useState)("");
+  let [anime, setAnime] = (0, import_react10.useState)([]);
+  function gettingSearch(event) {
+    console.log(event.target.value);
+    setSearch(event.target.value);
+  }
+  function doSearch() {
+    fetch("http://localhost:3011/searchAnime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        search
+      })
+    }).then((data) => {
+      return data.json();
+    }).then((post) => {
+      setAnime(post);
+      console.log(anime);
+    });
+  }
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "bg-smooth-pink"
+  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("img", {
+    className: "w-screen h-[500px] z-0 -mb-32",
+    src: require_search_1(),
+    alt: "Wallpaper"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "h-full w-full flex justify-center items-center"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center"
+  }, /* @__PURE__ */ React.createElement(import_react9.Link, {
+    to: "/list"
+  }, /* @__PURE__ */ React.createElement("img", {
+    className: "rounded-3xl w-[150px]",
+    src: require_Icon(),
+    alt: "Icon"
+  })))), /* @__PURE__ */ React.createElement("h1", {
+    className: "font-montserrat text-7xl flex justify-center"
+  }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
+    className: "flex justify-center items-center"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "form-control w-full flex justify-center items-center"
+  }, /* @__PURE__ */ React.createElement("label", {
+    className: "label"
+  }, /* @__PURE__ */ React.createElement("span", {
+    className: "label-text-"
+  }), /* @__PURE__ */ React.createElement("span", {
+    className: "label-text-alt"
+  }, "Filters")), /* @__PURE__ */ React.createElement("input", {
+    type: "text",
+    placeholder: "Search Anime",
+    className: "input input-bordered w-[700px]",
+    onChange: gettingSearch
+  }), /* @__PURE__ */ React.createElement("button", {
+    onClick: doSearch
+  }, "Search"))), /* @__PURE__ */ React.createElement(Anime_Cards_List2, {
+    listAnimes: anime
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "mt-16"
+  }, /* @__PURE__ */ React.createElement(Ender2, null)));
+}
+
+// route:C:\ApollosWill\app\routes\index.tsx
 var routes_exports = {};
 __export(routes_exports, {
   default: () => Index,
@@ -724,59 +918,22 @@ function News2() {
   }, "\u276F"))));
 }
 
-// app/routes/components/navbar/Navbar.tsx
-var import_react7 = require("@remix-run/react");
-function Navbar2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "w-screen h-[75px] z-10 bg-smooth-blue"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "px-2 flex justify-between items-center w-full h-full"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "flex items-center pl-4"
-  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
-    to: "/"
-  }, /* @__PURE__ */ React.createElement("h1", {
-    className: "font-quicksand mr-4 text-[24px]"
-  }, "Apollo's Will")), /* @__PURE__ */ React.createElement("ul", {
-    className: "hidden md:flex font-montserrat"
-  }, /* @__PURE__ */ React.createElement("li", null, "Anime Search"), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React.createElement("h1", {
-    className: "pr-4"
-  }, "User_Name"), /* @__PURE__ */ React.createElement("div", {
-    className: "flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10"
-  }, /* @__PURE__ */ React.createElement(import_react7.Link, {
-    to: "/list"
-  }, /* @__PURE__ */ React.createElement("img", {
-    className: "rounded-3xl w-[100px]",
-    src: require_Icon(),
-    alt: "Icon"
-  }))))));
-}
-
-// app/routes/components/ender/Ender.tsx
-function Ender2() {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "w-full h-[150px] bg-[#FBAFAF] flex items-center justify-center"
-  }, /* @__PURE__ */ React.createElement("h1", null, "Apollo\u2019s Will is a property of Apollo\u2019s Will Co.,Ltd. \xA92022 All Rights Reserved."), /* @__PURE__ */ React.createElement("h1", null, "Icone Icone Icone"));
-}
-
 // app/routes/components/season_carousel/season_carousel.tsx
-var import_react8 = __toESM(require("react"));
-var import_react9 = require("react");
-var import_react_modal3 = __toESM(require("react-modal"));
+var import_react11 = __toESM(require("react"));
+var import_react12 = require("react");
+var import_react_modal4 = __toESM(require("react-modal"));
 function Season_Carousel2({ animes, loginId }) {
-  let [animeState, setAnimeState] = (0, import_react9.useState)("");
-  let [animeId, setListAnimeId] = (0, import_react9.useState)(0);
-  let [modalAnimeId, setAnimeId] = (0, import_react9.useState)("");
-  let [modalAnimeName, setAnimeName] = (0, import_react9.useState)("");
-  let [modalAnimeDescription, setAnimeDescription] = (0, import_react9.useState)("");
-  let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = (0, import_react9.useState)(0);
-  let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = (0, import_react9.useState)(0);
-  let [modalAnimeScore, setAnimeScore] = (0, import_react9.useState)(0);
-  let [isEpisodeHidden, setEpisodeHidden] = (0, import_react9.useState)("hidden");
-  let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react9.useState)("btn");
-  let [isStateHidden, setStateHidden] = (0, import_react9.useState)("hidden");
+  let [animeState, setAnimeState] = (0, import_react12.useState)("");
+  let [animeId, setListAnimeId] = (0, import_react12.useState)(0);
+  let [modalAnimeId, setAnimeId] = (0, import_react12.useState)("");
+  let [modalAnimeName, setAnimeName] = (0, import_react12.useState)("");
+  let [modalAnimeDescription, setAnimeDescription] = (0, import_react12.useState)("");
+  let [modalAnimeEpisodeCount, setAnimeEpisodeCount] = (0, import_react12.useState)(0);
+  let [modalAnimeEpisodeWatched, setAnimeEpisodeWatched] = (0, import_react12.useState)(0);
+  let [modalAnimeScore, setAnimeScore] = (0, import_react12.useState)(0);
+  let [isEpisodeHidden, setEpisodeHidden] = (0, import_react12.useState)("hidden");
+  let [isAddAnimeHidden, setAddAnimeHidden] = (0, import_react12.useState)("btn");
+  let [isStateHidden, setStateHidden] = (0, import_react12.useState)("hidden");
   let listData = [
     {
       id: animes[animeId].id,
@@ -787,7 +944,7 @@ function Season_Carousel2({ animes, loginId }) {
     }
   ];
   function changeModalAnime(id) {
-    fetch("http://localhost:3011/searchAnimeOnList", {
+    fetch("http://localhost:3011/searchAnime", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -833,6 +990,7 @@ function Season_Carousel2({ animes, loginId }) {
     setAnimeDescription(animes[id].synopsis);
     setAnimeEpisodeCount(animes[id].episode_count);
     setListAnimeId(id);
+    console.log(id);
     openModal();
   }
   function gettingAnimeState(event) {
@@ -898,7 +1056,7 @@ function Season_Carousel2({ animes, loginId }) {
     }
   }
   let subtitle;
-  const [modalIsOpen, setIsOpen] = import_react8.default.useState(false);
+  const [modalIsOpen, setIsOpen] = import_react11.default.useState(false);
   function openModal() {
     setIsOpen(true);
   }
@@ -907,195 +1065,236 @@ function Season_Carousel2({ animes, loginId }) {
   function closeModal() {
     setIsOpen(false);
   }
-  return /* @__PURE__ */ import_react8.default.createElement("div", {
+  return /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "carousel w-full"
-  }, /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement(import_react_modal3.default, {
+  }, /* @__PURE__ */ import_react11.default.createElement("div", null, /* @__PURE__ */ import_react11.default.createElement(import_react_modal4.default, {
     isOpen: modalIsOpen,
     onAfterOpen: afterOpenModal,
     onRequestClose: closeModal,
     ariaHideApp: false,
     contentLabel: "Example Modal"
-  }, /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card card-side bg-base-100 h-[500px]"
-  }, /* @__PURE__ */ import_react8.default.createElement("figure", null, /* @__PURE__ */ import_react8.default.createElement("img", {
+  }, /* @__PURE__ */ import_react11.default.createElement("figure", null, /* @__PURE__ */ import_react11.default.createElement("img", {
     className: "w-[300px] h-[500px]",
     src: "imgs/poster_" + modalAnimeId + ".png",
     alt: "Poster1"
-  })), /* @__PURE__ */ import_react8.default.createElement("div", {
+  })), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card-body"
-  }, /* @__PURE__ */ import_react8.default.createElement("h2", {
+  }, /* @__PURE__ */ import_react11.default.createElement("h2", {
     className: "card-title"
-  }, modalAnimeName), /* @__PURE__ */ import_react8.default.createElement("p", null, modalAnimeDescription), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, modalAnimeName), /* @__PURE__ */ import_react11.default.createElement("p", null, modalAnimeDescription), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: isAddAnimeHidden,
     onClick: addToList
-  }, "Add to List", " "), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "Add to List", " "), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card-actions justify-center flex"
-  }, /* @__PURE__ */ import_react8.default.createElement("datalist", {
+  }, /* @__PURE__ */ import_react11.default.createElement("datalist", {
     id: "states"
-  }, /* @__PURE__ */ import_react8.default.createElement("option", {
+  }, /* @__PURE__ */ import_react11.default.createElement("option", {
     value: "Watching"
-  }), /* @__PURE__ */ import_react8.default.createElement("option", {
+  }), /* @__PURE__ */ import_react11.default.createElement("option", {
     value: "Plan To Watch"
-  }), /* @__PURE__ */ import_react8.default.createElement("option", {
+  }), /* @__PURE__ */ import_react11.default.createElement("option", {
     value: "Completed"
-  }), /* @__PURE__ */ import_react8.default.createElement("option", {
+  }), /* @__PURE__ */ import_react11.default.createElement("option", {
     value: "On Hold"
-  }), /* @__PURE__ */ import_react8.default.createElement("option", {
+  }), /* @__PURE__ */ import_react11.default.createElement("option", {
     value: "Dropped"
-  })), /* @__PURE__ */ import_react8.default.createElement("div", {
+  })), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: isStateHidden
-  }, "Anime State"), /* @__PURE__ */ import_react8.default.createElement("form", null, /* @__PURE__ */ import_react8.default.createElement("input", {
+  }, "Anime State"), /* @__PURE__ */ import_react11.default.createElement("form", null, /* @__PURE__ */ import_react11.default.createElement("input", {
     onChange: gettingAnimeState,
     list: "states",
     className: isStateHidden
-  }))), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }))), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: isEpisodeHidden
-  }, /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "justify-center flex"
-  }, "Score"), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "Score"), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "justify-center items-center flex"
-  }, modalAnimeScore + " / 10"), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, modalAnimeScore + " / 10"), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card-actions justify-center flex"
-  }, /* @__PURE__ */ import_react8.default.createElement("button", {
+  }, /* @__PURE__ */ import_react11.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: subScore
-  }, "-"), /* @__PURE__ */ import_react8.default.createElement("button", {
+  }, "-"), /* @__PURE__ */ import_react11.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: addScore
-  }, "+")), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "+")), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "justify-center flex"
-  }, "Episodes"), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "Episodes"), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "justify-center items-center flex"
-  }, modalAnimeEpisodeWatched + " / " + modalAnimeEpisodeCount), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, modalAnimeEpisodeWatched + " / " + modalAnimeEpisodeCount), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card-actions justify-center flex"
-  }, /* @__PURE__ */ import_react8.default.createElement("button", {
+  }, /* @__PURE__ */ import_react11.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: subEpisode
-  }, "-"), /* @__PURE__ */ import_react8.default.createElement("button", {
+  }, "-"), /* @__PURE__ */ import_react11.default.createElement("button", {
     className: "w-[50px] bg-smooth-blue",
     onClick: addEpisode
-  }, "+")), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "+")), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "card-actions justify-end flex"
-  }, /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "btn",
     onClick: saveData
-  }, "Save"), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "Save"), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "btn",
     onClick: removeOfList
-  }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "Remove Anime From List"))))))), /* @__PURE__ */ import_react11.default.createElement("div", {
     id: "season-1",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ import_react8.default.createElement("img", {
+  }, /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(0),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[0].id + ".png",
     alt: "Poster1"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(1),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[1].id + ".png",
     alt: "Poster2"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(2),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[2].id + ".png",
     alt: "Poster3"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(3),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[3].id + ".png",
     alt: "Poster4"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(4),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[4].id + ".png",
     alt: "Poster5"
-  }), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-3",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-2",
     className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "\u276F"))), /* @__PURE__ */ import_react11.default.createElement("div", {
     id: "season-2",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ import_react8.default.createElement("img", {
+  }, /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(5),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[5].id + ".png",
     alt: "Poster1"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(6),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[6].id + ".png",
     alt: "Poster2"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(7),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[7].id + ".png",
     alt: "Poster3"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(8),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[8].id + ".png",
     alt: "Poster4"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(9),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[9].id + ".png",
     alt: "Poster5"
-  }), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-1",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-3",
     className: "btn btn-circle"
-  }, "\u276F"))), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }, "\u276F"))), /* @__PURE__ */ import_react11.default.createElement("div", {
     id: "season-3",
     className: "carousel-item relative w-full scroll-mt-36"
-  }, /* @__PURE__ */ import_react8.default.createElement("img", {
+  }, /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(10),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[10].id + ".png",
     alt: "Poster1"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(11),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[11].id + ".png",
     alt: "Poster2"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(12),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[12].id + ".png",
     alt: "Poster3"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(13),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[13].id + ".png",
     alt: "Poster4"
-  }), /* @__PURE__ */ import_react8.default.createElement("img", {
+  }), /* @__PURE__ */ import_react11.default.createElement("img", {
     onClick: () => changeModalAnime(14),
     className: "w-[250px] h-[350px] pl-16",
     src: "imgs/poster_" + animes[14].id + ".png",
     alt: "Poster5"
-  }), /* @__PURE__ */ import_react8.default.createElement("div", {
+  }), /* @__PURE__ */ import_react11.default.createElement("div", {
     className: "absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-  }, /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-2",
     className: "btn btn-circle"
-  }, "\u276E"), /* @__PURE__ */ import_react8.default.createElement("a", {
+  }, "\u276E"), /* @__PURE__ */ import_react11.default.createElement("a", {
     href: "#season-1",
     className: "btn btn-circle"
   }, "\u276F"))));
 }
 
 // app/routes/components/list_carousel/list_carousel.tsx
+var import_react13 = __toESM(require("react"));
+var import_react_responsive_carousel2 = require("react-responsive-carousel");
+var import_react_modal5 = __toESM(require("react-modal"));
 function List_Carousel2() {
-  return /* @__PURE__ */ React.createElement("div", null, "Pee");
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = import_react13.default.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  return /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement(import_react_modal5.default, {
+    isOpen: modalIsOpen,
+    onAfterOpen: afterOpenModal,
+    onRequestClose: closeModal,
+    ariaHideApp: false,
+    contentLabel: "Example Modal"
+  }, /* @__PURE__ */ import_react13.default.createElement("div", null, "PEe")), /* @__PURE__ */ import_react13.default.createElement(import_react_responsive_carousel2.Carousel, {
+    showThumbs: false,
+    centerMode: true,
+    swipeable: true
+  }, /* @__PURE__ */ import_react13.default.createElement("div", {
+    onClick: openModal,
+    className: "w-32"
+  }, /* @__PURE__ */ import_react13.default.createElement("img", {
+    src: "imgs/poster_1.png",
+    className: "h-[500px]"
+  }), /* @__PURE__ */ import_react13.default.createElement("p", {
+    className: "legend"
+  }, "Cowboy Bebop")), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("img", {
+    src: "imgs/banner_3.png",
+    className: "w-[300px] h-[500px]"
+  }), /* @__PURE__ */ import_react13.default.createElement("p", {
+    className: "legend"
+  }, "Legend 1")), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("img", {
+    src: "imgs/banner_1697.png",
+    className: "w-[300px] h-[500px]"
+  }), /* @__PURE__ */ import_react13.default.createElement("p", {
+    className: "legend"
+  }, "Lucky Stars"))));
 }
 
 // app/database/db.server.ts
@@ -1125,13 +1324,12 @@ pool.getConnection((err, connection) => {
   return;
 });
 
-// route:/home/hiniku/ApollosWill/app/routes/index.tsx
-var import_react10 = require("@remix-run/react");
-var import_react11 = require("react");
+// route:C:\ApollosWill\app\routes\index.tsx
+var import_react14 = require("@remix-run/react");
+var import_react15 = require("react");
 var loader = async () => {
   let conn;
   let seasonAnime = [];
-  let listAnime = [];
   try {
     conn = await pool.getConnection();
     seasonAnime = await conn.query("SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;");
@@ -1144,12 +1342,13 @@ var loader = async () => {
   };
 };
 function Index() {
-  const { seasonAnime, listAnime } = (0, import_react10.useLoaderData)();
-  let [showMain, setShowMain] = (0, import_react11.useState)("hidden");
-  let [loginHidden, setLoginHidden] = (0, import_react11.useState)("");
-  let [loginId, setLoginId] = (0, import_react11.useState)();
-  let [login, setLogin] = (0, import_react11.useState)("");
-  let [password, setPassword] = (0, import_react11.useState)("");
+  const { seasonAnime } = (0, import_react14.useLoaderData)();
+  let [userName, setUserName] = (0, import_react15.useState)("");
+  let [showMain, setShowMain] = (0, import_react15.useState)("hidden");
+  let [loginHidden, setLoginHidden] = (0, import_react15.useState)("");
+  let [loginId, setLoginId] = (0, import_react15.useState)();
+  let [login, setLogin] = (0, import_react15.useState)("");
+  let [password, setPassword] = (0, import_react15.useState)("");
   let loginData = [
     {
       login,
@@ -1198,7 +1397,7 @@ function Index() {
     });
   }
   return /* @__PURE__ */ React.createElement("div", {
-    className: "bg-smooth-pink"
+    className: "bg-smooth-pink h-[100%] w-[100%] "
   }, /* @__PURE__ */ React.createElement("div", {
     className: loginHidden
   }, /* @__PURE__ */ React.createElement("div", {
@@ -1223,11 +1422,7 @@ function Index() {
     className: "pl-20 pb-5 font-quicksand text-[24px]"
   }, "Animes You're Watching"), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: " w-full h-[500px] flex items-center justify-center"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "w-full h-[400px]"
-  }, /* @__PURE__ */ React.createElement(List_Carousel2, null)))), /* @__PURE__ */ React.createElement("h1", {
+  }, /* @__PURE__ */ React.createElement(List_Carousel2, null)), /* @__PURE__ */ React.createElement("h1", {
     className: "pl-20 pb-5 font-quicksand text-[24px] pt-10"
   }, "Current"), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-full flex items-center justify-center bg-smooth-blue"
@@ -1238,42 +1433,18 @@ function Index() {
   }, /* @__PURE__ */ React.createElement(Season_Carousel2, {
     animes: seasonAnime,
     loginId
-  }))))), /* @__PURE__ */ React.createElement(Ender2, null));
+  }))))), /* @__PURE__ */ React.createElement("div", {
+    className: "place-items-end"
+  }, /* @__PURE__ */ React.createElement(Ender2, null)));
 }
 
-// route:/home/hiniku/ApollosWill/app/routes/list.tsx
+// route:C:\ApollosWill\app\routes\list.tsx
 var list_exports = {};
 __export(list_exports, {
   default: () => List,
   loader: () => loader2
 });
-var import_react12 = require("@remix-run/react");
-
-// app/routes/components/anime_cards/anime_cards_list.tsx
-function Anime_Cards_List2(listAnimes) {
-  const divs = [];
-  for (const anime of listAnimes.listAnimes) {
-    divs.push(/* @__PURE__ */ React.createElement("div", {
-      className: "w-full h-full flex justify-center items-center pt-16",
-      key: anime.id
-    }, /* @__PURE__ */ React.createElement("div", {
-      className: "card card-side bg-base-100 shadow-xl h-32 mr-10"
-    }, /* @__PURE__ */ React.createElement("figure", null, /* @__PURE__ */ React.createElement("img", {
-      className: "w-[91px]",
-      src: "imgs/poster_" + anime.id + ".png",
-      alt: "Poster"
-    })), /* @__PURE__ */ React.createElement("div", {
-      className: "card-body w-[700px]"
-    }, /* @__PURE__ */ React.createElement("h2", {
-      className: "card-title"
-    }, anime.en_jp_title), /* @__PURE__ */ React.createElement("p", null, "something")))));
-  }
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "w-full h-full"
-  }, divs);
-}
-
-// route:/home/hiniku/ApollosWill/app/routes/list.tsx
+var import_react16 = require("@remix-run/react");
 var loader2 = async () => {
   let conn;
   let listAnime = [];
@@ -1287,10 +1458,10 @@ var loader2 = async () => {
   return listAnime;
 };
 function List() {
-  const listAnimes = (0, import_react12.useLoaderData)();
+  const listAnimes = (0, import_react16.useLoaderData)();
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink"
-  }, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ React.createElement(Navbar2, null), /* @__PURE__ */ React.createElement("img", {
     className: "w-screen h-[500px] -z-10 -mb-32",
     src: require_Wallpaper(),
     alt: "Wallpaper"
@@ -1298,7 +1469,7 @@ function List() {
     className: "h-full w-full flex justify-center items-center"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "flex w-[200px] h-[200px] bg-smooth-pink items-center rounded-3xl justify-center"
-  }, /* @__PURE__ */ React.createElement(import_react12.Link, {
+  }, /* @__PURE__ */ React.createElement(import_react16.Link, {
     to: "/list"
   }, /* @__PURE__ */ React.createElement("img", {
     className: "rounded-3xl w-[150px]",
@@ -1328,7 +1499,7 @@ function List() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "41bb267d", "entry": { "module": "/build/entry.client-4PK4VBJ4.js", "imports": ["/build/_shared/chunk-7CZMI56X.js", "/build/_shared/chunk-CXUM7KEC.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-HU63VZX3.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-2CALGTX5.js", "imports": ["/build/_shared/chunk-LQJFNBDS.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-DUYYQCVJ.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-GGVPRE2C.js", "imports": ["/build/_shared/chunk-MHFPKCWG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-INNMENHJ.js", "imports": ["/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-4JKNXC4A.js", "imports": ["/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-JL4KIEUI.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-B2EAERLN.js", "imports": ["/build/_shared/chunk-QVNYT76M.js", "/build/_shared/chunk-EVNUERIG.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-XOSEJKSA.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-OOIPFNYK.js", "/build/_shared/chunk-QVNYT76M.js", "/build/_shared/chunk-MHFPKCWG.js", "/build/_shared/chunk-EVNUERIG.js", "/build/_shared/chunk-O6Y7SPNZ.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-EQRS5SA5.js", "imports": ["/build/_shared/chunk-OOIPFNYK.js", "/build/_shared/chunk-LQJFNBDS.js", "/build/_shared/chunk-T6GTFLHQ.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-41BB267D.js" };
+var assets_manifest_default = { "version": "21ae162f", "entry": { "module": "/build/entry.client-66FZKEU5.js", "imports": ["/build/_shared/chunk-AVW5BVGG.js", "/build/_shared/chunk-U6CVYINL.js", "/build/_shared/chunk-WMKGSFCP.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-UPO3KXQO.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-VSDCNVLY.js", "imports": ["/build/_shared/chunk-PTZQMBA4.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-45QKKCCN.js", "imports": ["/build/_shared/chunk-2UUXD6KO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/list_carousel/list_carousel": { "id": "routes/components/list_carousel/list_carousel", "parentId": "root", "path": "components/list_carousel/list_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/list_carousel/list_carousel-2SSBIUDF.js", "imports": ["/build/_shared/chunk-IHXT4ZF5.js", "/build/_shared/chunk-SGGON5F4.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/modal/modal_anime": { "id": "routes/components/modal/modal_anime", "parentId": "root", "path": "components/modal/modal_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/modal/modal_anime-Z56FZM4B.js", "imports": ["/build/_shared/chunk-SGGON5F4.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-KE6ZTWNW.js", "imports": ["/build/_shared/chunk-EY3KZLIH.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-MIDUYLA2.js", "imports": ["/build/_shared/chunk-AGNCBNF6.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/season_carousel/season_carousel": { "id": "routes/components/season_carousel/season_carousel", "parentId": "root", "path": "components/season_carousel/season_carousel", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/season_carousel/season_carousel-ZK7UWMXU.js", "imports": ["/build/_shared/chunk-X47LLUAV.js", "/build/_shared/chunk-SGGON5F4.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-IWDBZD6W.js", "imports": ["/build/_shared/chunk-AGNCBNF6.js", "/build/_shared/chunk-NWS5YGTZ.js", "/build/_shared/chunk-X47LLUAV.js", "/build/_shared/chunk-IHXT4ZF5.js", "/build/_shared/chunk-SGGON5F4.js", "/build/_shared/chunk-EY3KZLIH.js", "/build/_shared/chunk-2UUXD6KO.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list": { "id": "routes/list", "parentId": "root", "path": "list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list-UUPEVJ7M.js", "imports": ["/build/_shared/chunk-NWS5YGTZ.js", "/build/_shared/chunk-PTZQMBA4.js", "/build/_shared/chunk-EY3KZLIH.js", "/build/_shared/chunk-2UUXD6KO.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/search_anime": { "id": "routes/search_anime", "parentId": "root", "path": "search_anime", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/search_anime-QBAKSNFH.js", "imports": ["/build/_shared/chunk-PTZQMBA4.js", "/build/_shared/chunk-EY3KZLIH.js", "/build/_shared/chunk-2UUXD6KO.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-21AE162F.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
@@ -1396,6 +1567,14 @@ var routes = {
     index: void 0,
     caseSensitive: void 0,
     module: News_exports
+  },
+  "routes/search_anime": {
+    id: "routes/search_anime",
+    parentId: "root",
+    path: "search_anime",
+    index: void 0,
+    caseSensitive: void 0,
+    module: search_anime_exports
   },
   "routes/index": {
     id: "routes/index",

@@ -27,7 +27,7 @@ export default function Season_Carousel({ animes, loginId }: any) {
   ];
 
   function changeModalAnime(id: number) {
-    fetch("http://localhost:3011/searchAnimeOnList", {
+    fetch("http://localhost:3011/searchAnime", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,6 +81,7 @@ export default function Season_Carousel({ animes, loginId }: any) {
     setAnimeEpisodeCount(animes[id].episode_count);
     
     setListAnimeId(id);
+    console.log(id)
     openModal();
   }
 

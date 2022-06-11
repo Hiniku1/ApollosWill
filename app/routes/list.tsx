@@ -3,8 +3,7 @@ import Anime_Cards_List from "./components/anime_cards/anime_cards_list";
 import Ender from "./components/ender/Ender";
 
 import { pool } from "../database/db.server"
-
-
+import Navbar from "./components/navbar/Navbar";
 
 export const loader = async () => {
     let conn;
@@ -23,11 +22,13 @@ export const loader = async () => {
   };
 
 export default function List() {
-    const listAnimes = useLoaderData()  
+    const listAnimes = useLoaderData();  
     
     return (
         <div className="bg-smooth-pink">
             
+            <Navbar/>
+
             <img className="w-screen h-[500px] -z-10 -mb-32" src={require("public/imgs/Wallpaper.jpeg")} alt="Wallpaper" />
             <div className="h-full w-full flex justify-center items-center">
                 {/* Icon */}

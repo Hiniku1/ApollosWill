@@ -13,7 +13,6 @@ import { useState } from "react";
 export const loader = async () => {
   let conn;
   let seasonAnime = [];
-  let listAnime = [];
   try {
     conn = await pool.getConnection();
 
@@ -21,7 +20,7 @@ export const loader = async () => {
       "SELECT * FROM Anime WHERE MONTH(start_date) = 4 and YEAR(start_date)= 2021 ;"
     );
 
-   
+
   } finally {
     if (conn) conn.release(); //release to pool
   }
@@ -32,8 +31,9 @@ export const loader = async () => {
 };
 
 export default function Index() {
-  const { seasonAnime, listAnime } = useLoaderData();
+  const { seasonAnime } = useLoaderData();
 
+  let [userName, setUserName] = useState("");
   let [showMain, setShowMain] = useState("hidden");
   let [loginHidden, setLoginHidden] = useState("");
   let [loginId, setLoginId] = useState();
@@ -101,7 +101,8 @@ export default function Index() {
   }
 
   return (
-    <div className="bg-smooth-pink">
+    <div className="bg-smooth-pink h-[100%] w-[100%] ">
+
       <div className={loginHidden}>
         <div className="bg-smooth-pink h-[500px] items-center justify-center flex mt-32">
           <div className="bg-smooth-blue w-[300px] h-[400px] items-center flex justify-center">
@@ -141,11 +142,7 @@ export default function Index() {
           Animes You're Watching
         </h1>
         <div className="w-screen h-full flex items-center justify-center bg-smooth-blue">
-          <div className=" w-full h-[500px] flex items-center justify-center">
-            <div className="w-full h-[400px]">
-              <List_Carousel/>
-            </div>
-          </div>
+          <List_Carousel />
         </div>
 
         <h1 className="pl-20 pb-5 font-quicksand text-[24px] pt-10">Current</h1>
@@ -158,7 +155,12 @@ export default function Index() {
         </div>
       </div>
 
-      <Ender />
+      <div className="place-items-end">
+
+        <Ender />
+
+      </div>
     </div>
   );
+  
 }

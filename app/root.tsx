@@ -1,4 +1,5 @@
 import tailwindUrl from "./styles/tailwind.css"
+import carouselUrl from "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
@@ -18,6 +19,7 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: tailwindUrl },
+  { rel: "stylesheet", href: carouselUrl },
 ];
 
 
@@ -29,7 +31,7 @@ export default function App() {
         <Links />
         
       </head>
-      <body>
+      <body className="bg-smooth-pink">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
