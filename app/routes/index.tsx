@@ -7,6 +7,7 @@ import List_Carousel from "./components/list_carousel/list_carousel";
 import { pool } from "../database/db.server";
 import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
+import Anime_Cards_Home from "./components/anime_cards/anime_cards_home";
 
 
 
@@ -33,17 +34,20 @@ export const loader = async () => {
 export default function Index() {
   const { seasonAnime } = useLoaderData();
 
+  
   let [userName, setUserName] = useState("");
   let [showMain, setShowMain] = useState("hidden");
   let [loginHidden, setLoginHidden] = useState("");
-  let [loginId, setLoginId] = useState();
+  let [loginId, setLoginId] = useState(0);
   let [login, setLogin] = useState("");
   let [password, setPassword] = useState("");
+  let [listAnime, setListAnime] = useState([]);
 
   let loginData = [
     {
       login: login,
       password: password,
+      id: loginId
     },
   ];
 
@@ -60,7 +64,7 @@ export default function Index() {
   }
 
   async function doLogin() {
-    console.log(login, password);
+
     fetch("http://localhost:3011/login", {
       method: "POST",
       headers: {
@@ -99,7 +103,7 @@ export default function Index() {
         }
       });
   }
-
+  console.log(loginId)
   return (
     <div className="bg-smooth-pink h-[100%] w-[100%] ">
 
@@ -128,7 +132,8 @@ export default function Index() {
       </div>
 
       <div className={showMain}>
-        <Navbar />
+
+        <Navbar userName={login} userId={loginId} />
 
         {/* the div where the News carousel goes */}
         <div className="w-screen h-[500px] flex items-center justify-center">
@@ -136,23 +141,13 @@ export default function Index() {
             <News />
           </div>
         </div>
+        <h1 className="">Top Animes Of The Season</h1>
+        <div className="items-center justify-center bg-smooth-blue">
+          
+          <Anime_Cards_Home listAnimes={seasonAnime} userId={loginId}/>
 
-        {/* the div where the Winter Season Anime goes */}
-        <h1 className="pl-20 pb-5 font-quicksand text-[24px]">
-          Animes You're Watching
-        </h1>
-        <div className="w-screen h-full flex items-center justify-center bg-smooth-blue">
-          <List_Carousel />
         </div>
 
-        <h1 className="pl-20 pb-5 font-quicksand text-[24px] pt-10">Current</h1>
-        <div className="w-screen h-full flex items-center justify-center bg-smooth-blue">
-          <div className=" w-full h-[500px] flex items-center justify-center">
-            <div className="w-full h-[400px]">
-              <Season_Carousel animes={seasonAnime} loginId={loginId} />
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="place-items-end">
@@ -162,5 +157,5 @@ export default function Index() {
       </div>
     </div>
   );
-  
+
 }
