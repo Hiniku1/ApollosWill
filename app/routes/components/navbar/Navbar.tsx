@@ -5,7 +5,7 @@ export default function Navbar({userName, userId}: any ) {
         <div className='w-screen h-[75px] bg-smooth-blue'>
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex items-center pl-4'>
-                    <Link to="/"><h1 className='font-quicksand mr-4 text-[24px]'>Apollo's Will</h1></Link>
+                    <Link to={"/home/" + userId}><h1 className='font-quicksand mr-4 text-[24px]'>Apollo's Will</h1></Link>
                     <ul className='hidden md:flex font-montserrat'>
                         <li><Link to={"/search_page/" + userId}>Anime Search</Link></li>
                         <li>Industry</li>

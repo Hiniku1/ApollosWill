@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 
 import React from 'react';
@@ -30,10 +30,10 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
   let subtitle: { style: { color: string } };
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-/* Modal Things */
+  /* Modal Things */
 
   function openModal(id: number) {
-  
+
     /* Searching to see if the anime is on the list */
     fetch("http://localhost:3011/searchAnimeOnList", {
       method: "POST",
@@ -51,10 +51,10 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
       .then((post) => {
         if (post.isOnList) {
           console.log(post);
-              setEpisodesWatched(post.episodesWatched);
-              setScoreGiven(post.scoreGiven)
-              setAnimeState(post.animeState)
-          
+          setEpisodesWatched(post.episodesWatched);
+          setScoreGiven(post.scoreGiven)
+          setAnimeState(post.animeState)
+
           /* Setting the Buttons Hidden or Visible */
           setAddBtnHidden("hidden")
           setSynopsisHidden("hidden")
@@ -169,7 +169,7 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
   }
 
   /* Getting the Anime State */
-  
+
   function gettingAnimeState(event: {
     target: { value: React.SetStateAction<string> };
   }) {
@@ -177,7 +177,7 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
   }
 
   /* Saving the List Data */
-  
+
   function saveData() {
     fetch("http://localhost:3011/postListData", {
       method: "POST",
@@ -194,7 +194,7 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
     });
   }
   /* For Loop to map all the animes on the list */
-  
+
   for (const anime of listAnimes) {
     divs.push(
       <div className="w-full h-full flex justify-center items-center pt-16 pb-16" key={anime.id_anime}>
@@ -202,14 +202,13 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
           <figure>
             <img
               className="w-[91px]"
-              src={"/imgs/poster_" + anime.id_anime + ".png"}
+              src={"../imgs/poster_" + anime.id_anime + ".png"}
               alt="Poster"
               onClick={() => { openModal(anime.id_anime) }}
             />
           </figure>
           <div className="card-body w-[700px]">
             <h2 className="card-title">{anime.en_jp_title}</h2>
-            <p>something</p>
           </div>
         </div>
       </div>
@@ -228,22 +227,22 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
       >
 
         <div className="card bg-base-100 shadow-xl image-full">
-          <figure className=" h-[500px]"><img className="w-full h-full" src={"imgs/banner_" + whatAnimeId + ".png"} alt="Banner" /></figure>
+          <figure className=" h-[500px]"><img className="w-full h-full" src={"../imgs/banner_" + whatAnimeId + ".png"} alt="Banner" /></figure>
           <div className="card-body">
             <h2 className="card-title"></h2>
             {/* Anime Title */}
-            
+
             <p>{animeTitle}</p>
-             
-             {/* Anime Synopsis (note: it will be hidden when already on the list) */}
+
+            {/* Anime Synopsis (note: it will be hidden when already on the list) */}
 
             <p className={isSynopsisHidden}>{animeSynopsis}</p>
-            
-             {/* Episode and Score (note: when not on list they will be hidden) */}
+
+            {/* Episode and Score (note: when not on list they will be hidden) */}
 
             <p className={isEpisodesScoreHidden}>
               <div>
-                 {/* List Episodes */}
+                {/* List Episodes */}
                 <p>Episodes Watched {<br />}
                   {episodesWatched}/{episodeCount}</p>
 
@@ -256,7 +255,7 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
                   </li>
                 </ul>
 
-                 {/* List Score */}
+                {/* List Score */}
 
                 <p>Score {<br />}
                   {scoreGiven}/10</p>
@@ -272,7 +271,7 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
                   </li>
                 </ul>
 
-                 {/* List Anime State */}
+                {/* List Anime State */}
 
                 <select onChange={gettingAnimeState} value={animeState} className="select w-full max-w-xs">
                   <option disabled selected>Anime State</option>
@@ -284,14 +283,14 @@ export default function Anime_Cards_List({ userId, listAnimes }: any) {
               </div>
             </p>
 
-             {/* Add to List Button */}
-            
+            {/* Add to List Button */}
+
             <div className="card-actions justify-end">
               <button onClick={addToList} className={isAddBtnHidden}>Add To List</button>
             </div>
-            
-             {/* Save on the List Button */}
-            
+
+            {/* Save on the List Button */}
+
             <div className="card-actions justify-end">
               <button onClick={saveData} className={isUpdateRemoveBtnHidden}>Update</button>
               <button onClick={removeOfList} className={isUpdateRemoveBtnHidden}>Remove</button>
