@@ -8,8 +8,6 @@ export default function Navbar({userName, userId}: any ) {
                     <Link to={"/home/" + userId}><h1 className='font-quicksand mr-4 text-[24px]'>Apollo's Will</h1></Link>
                     <ul className='hidden md:flex font-montserrat'>
                         <li><Link to={"/search_page/" + userId}>Anime Search</Link></li>
-                        <li>Industry</li>
-                        <li>About</li>
                     </ul>
                 </div>
 

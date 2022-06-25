@@ -22,6 +22,32 @@ app.use(cors());
 
 /* Login Things */
 
+/* Getting UserName */
+app.post("/searchUserName", async (req, res) => {
+  const conn = await pool.getConnection();
+  try {
+    console.log(req.body[0].id)
+    
+    const searchUserName = await conn.query(
+      "SELECT * from User WHERE id = ?",
+      [req.body[0].id]
+    );
+
+    res.send(searchUserName)
+
+  } catch (err) {
+    console.log(err);
+  } finally {
+    if (conn) {
+      conn.end();
+    }
+  }
+});
+
+
+
+
+
 app.post("/login", async (req, res) => {
   const conn = await pool.getConnection();
   try {

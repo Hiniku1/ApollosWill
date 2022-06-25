@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from "@remix-run/react";
+import { useState } from "react";
 import { pool } from "~/database/db.server";
 import Anime_Cards_Home from "../components/anime_cards/anime_cards_home";
 import Ender from "../components/ender/Ender";
@@ -30,9 +31,27 @@ export const loader = async () => {
 
 export default function Home(){
     let loginId = useParams();
+    let [userName, letUserName] = useState()
     const { seasonAnime } = useLoaderData();
 
-    
+    fetch("http://localhost:3011/searchUserName", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([{
+        id: loginId.home
+      }]),
+    })
+      .then((data) => {
+        return data.json();
+      })
+      .then((post) => {
+        console.log(post)
+        letUserName(post[0].user_name)
+        
+      });
+      console.log(userName)
     
     
     return (
@@ -40,7 +59,7 @@ export default function Home(){
   
         <div>
   
-          <Navbar userId={loginId.home} />
+          <Navbar userName={userName} userId={loginId.home} />
   
           {/* the div where the News carousel goes */}
           <div className="w-screen h-[500px] flex items-center justify-center">

@@ -232,7 +232,7 @@ function Anime_Cards_Home({ userId, listAnimes }) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId
+        userId: userId.home
       })
     });
     setAddBtnHidden("hidden");
@@ -248,7 +248,7 @@ function Anime_Cards_Home({ userId, listAnimes }) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId
+        userId: userId.home
       })
     });
     setAddBtnHidden("btn btn-primary");
@@ -290,7 +290,7 @@ function Anime_Cards_Home({ userId, listAnimes }) {
         animeState,
         score: scoreGiven,
         episodesWatched,
-        userId
+        userId: userId.home
       })
     });
   }
@@ -627,7 +627,7 @@ function Navbar({ userName, userId }) {
     className: "hidden md:flex font-montserrat"
   }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react7.Link, {
     to: "/search_page/" + userId
-  }, "Anime Search")), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
+  }, "Anime Search")))), /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "pr-4"
@@ -812,7 +812,7 @@ function Anime_Cards_Home2({ userId, listAnimes }) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId
+        userId: userId.home
       })
     });
     setAddBtnHidden("hidden");
@@ -828,7 +828,7 @@ function Anime_Cards_Home2({ userId, listAnimes }) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId
+        userId: userId.home
       })
     });
     setAddBtnHidden("btn btn-primary");
@@ -870,7 +870,7 @@ function Anime_Cards_Home2({ userId, listAnimes }) {
         animeState,
         score: scoreGiven,
         episodesWatched,
-        userId
+        userId: userId.home
       })
     });
   }
@@ -981,7 +981,7 @@ function Navbar2({ userName, userId }) {
     className: "hidden md:flex font-montserrat"
   }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_react10.Link, {
     to: "/search_page/" + userId
-  }, "Anime Search")), /* @__PURE__ */ React.createElement("li", null, "Industry"), /* @__PURE__ */ React.createElement("li", null, "About"))), /* @__PURE__ */ React.createElement("div", {
+  }, "Anime Search")))), /* @__PURE__ */ React.createElement("div", {
     className: "flex items-center"
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "pr-4"
@@ -1370,6 +1370,7 @@ __export(home_exports, {
   loader: () => loader
 });
 var import_react17 = require("@remix-run/react");
+var import_react18 = require("react");
 
 // app/database/db.server.ts
 var mariadb = require("mariadb");
@@ -1482,10 +1483,27 @@ var loader = async () => {
 };
 function Home() {
   let loginId = (0, import_react17.useParams)();
+  let [userName, letUserName] = (0, import_react18.useState)();
   const { seasonAnime } = (0, import_react17.useLoaderData)();
+  fetch("http://localhost:3011/searchUserName", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify([{
+      id: loginId.home
+    }])
+  }).then((data) => {
+    return data.json();
+  }).then((post) => {
+    console.log(post);
+    letUserName(post[0].user_name);
+  });
+  console.log(userName);
   return /* @__PURE__ */ React.createElement("div", {
     className: "bg-smooth-pink h-[100%] w-[100%] "
   }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Navbar2, {
+    userName,
     userId: loginId.home
   }), /* @__PURE__ */ React.createElement("div", {
     className: "w-screen h-[500px] flex items-center justify-center"
@@ -1508,14 +1526,14 @@ var routes_exports = {};
 __export(routes_exports, {
   default: () => Index
 });
-var import_react18 = require("@remix-run/react");
-var import_react19 = require("react");
+var import_react19 = require("@remix-run/react");
+var import_react20 = require("react");
 function Index() {
-  let [isLoggedIn, setIsLoggedIn] = (0, import_react19.useState)(false);
-  let [loginId, setLoginId] = (0, import_react19.useState)(0);
-  let [login, setLogin] = (0, import_react19.useState)("");
-  let [password, setPassword] = (0, import_react19.useState)("");
-  let navigate = (0, import_react18.useNavigate)();
+  let [isLoggedIn, setIsLoggedIn] = (0, import_react20.useState)(false);
+  let [loginId, setLoginId] = (0, import_react20.useState)(0);
+  let [login, setLogin] = (0, import_react20.useState)("");
+  let [password, setPassword] = (0, import_react20.useState)("");
+  let navigate = (0, import_react19.useNavigate)();
   let loginData = [
     {
       login,
@@ -1586,7 +1604,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { "version": "1991f984", "entry": { "module": "/build/entry.client-ANV3VT2E.js", "imports": ["/build/_shared/chunk-TF7DY7FC.js", "/build/_shared/chunk-M23CFS64.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-MZXCHHDG.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_home": { "id": "routes/components/anime_cards/anime_cards_home", "parentId": "root", "path": "components/anime_cards/anime_cards_home", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_home-IFGXGPIB.js", "imports": ["/build/_shared/chunk-O7Q4UA64.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-MJV3LUTY.js", "imports": ["/build/_shared/chunk-6Z4PAN2L.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-K3M5HREF.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-DN5ZN2PH.js", "imports": ["/build/_shared/chunk-3S5ACJFK.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-BFAU4676.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/home/$home": { "id": "routes/home/$home", "parentId": "root", "path": "home/:home", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/home/$home-N2RGZELS.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-O7Q4UA64.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-3S5ACJFK.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-UNUH2RC3.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list/$listId": { "id": "routes/list/$listId", "parentId": "root", "path": "list/:listId", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list/$listId-AZFG6ISV.js", "imports": ["/build/_shared/chunk-6Z4PAN2L.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-3S5ACJFK.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/search_page/$search": { "id": "routes/search_page/$search", "parentId": "root", "path": "search_page/:search", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/search_page/$search-S4VW4I6Q.js", "imports": ["/build/_shared/chunk-O7Q4UA64.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-3S5ACJFK.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-1991F984.js" };
+var assets_manifest_default = { "version": "df36fe5e", "entry": { "module": "/build/entry.client-I2Z74FYW.js", "imports": ["/build/_shared/chunk-TF7DY7FC.js", "/build/_shared/chunk-X4YTQSUM.js", "/build/_shared/chunk-XV23MX66.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-SUL6ZUUO.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_home": { "id": "routes/components/anime_cards/anime_cards_home", "parentId": "root", "path": "components/anime_cards/anime_cards_home", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_home-RH6GU3AI.js", "imports": ["/build/_shared/chunk-YF434IOX.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/anime_cards/anime_cards_list": { "id": "routes/components/anime_cards/anime_cards_list", "parentId": "root", "path": "components/anime_cards/anime_cards_list", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/anime_cards/anime_cards_list-MJV3LUTY.js", "imports": ["/build/_shared/chunk-6Z4PAN2L.js", "/build/_shared/chunk-UQ4CA6AX.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/ender/Ender": { "id": "routes/components/ender/Ender", "parentId": "root", "path": "components/ender/Ender", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/ender/Ender-K3M5HREF.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/navbar/Navbar": { "id": "routes/components/navbar/Navbar", "parentId": "root", "path": "components/navbar/Navbar", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/navbar/Navbar-JYJXBFOM.js", "imports": ["/build/_shared/chunk-AGPD5PYS.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/components/news/News": { "id": "routes/components/news/News", "parentId": "root", "path": "components/news/News", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/components/news/News-BFAU4676.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/home/$home": { "id": "routes/home/$home", "parentId": "root", "path": "home/:home", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/home/$home-JWCGXMK3.js", "imports": ["/build/_shared/chunk-BKROVRPJ.js", "/build/_shared/chunk-YF434IOX.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-AGPD5PYS.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-QEVXVZ3Y.js", "imports": ["/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/list/$listId": { "id": "routes/list/$listId", "parentId": "root", "path": "list/:listId", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/list/$listId-EZVYQL2S.js", "imports": ["/build/_shared/chunk-6Z4PAN2L.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-AGPD5PYS.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/search_page/$search": { "id": "routes/search_page/$search", "parentId": "root", "path": "search_page/:search", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/search_page/$search-OGQ57Z5S.js", "imports": ["/build/_shared/chunk-YF434IOX.js", "/build/_shared/chunk-UQ4CA6AX.js", "/build/_shared/chunk-AGPD5PYS.js", "/build/_shared/chunk-BKLBPOWP.js"], "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-DF36FE5E.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

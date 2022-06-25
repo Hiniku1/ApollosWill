@@ -8,6 +8,7 @@ import Modal from "react-modal";
 
 
 export default function Anime_Cards_Home({ userId, listAnimes }: any) {
+  
   let [whatAnimeId, setWhatAnimeId] = useState(0);
   let [animeTitle, setAnimeTitle] = useState("Anime_Title")
   let [animeSynopsis, setAnimeSynopsis] = useState("Anime_Synopsis")
@@ -122,7 +123,7 @@ export default function Anime_Cards_Home({ userId, listAnimes }: any) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId: userId
+        userId: userId.home
       }),
     });
     setAddBtnHidden("hidden")
@@ -139,7 +140,7 @@ export default function Anime_Cards_Home({ userId, listAnimes }: any) {
       },
       body: JSON.stringify({
         id: whatAnimeId,
-        userId: userId
+        userId: userId.home
       }),
     });
     setAddBtnHidden("btn btn-primary")
@@ -195,7 +196,7 @@ export default function Anime_Cards_Home({ userId, listAnimes }: any) {
         animeState: animeState,
         score: scoreGiven,
         episodesWatched: episodesWatched,
-        userId: userId
+        userId: userId.home
       }),
     });
   }
