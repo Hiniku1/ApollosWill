@@ -47,15 +47,13 @@ export default function Home(){
         return data.json();
       })
       .then((post) => {
-        console.log(post)
-        letUserName(post[0].user_name)
+        letUserName(post[0].login)
         
       });
-      console.log(userName)
     
     
     return (
-        <div className="bg-smooth-pink h-[100%] w-[100%] ">
+        <div className="h-[100%] w-[100%] ">
   
         <div>
   
@@ -67,7 +65,7 @@ export default function Home(){
               <News />
             </div>
           </div>
-          <h1 className="">Top Animes Of The Season</h1>
+          <h1 className="text-4xl">Top Animes Of The Season</h1>
           <div className="items-center justify-center bg-smooth-blue">
             
             <Anime_Cards_Home listAnimes={seasonAnime} userId={loginId}/>

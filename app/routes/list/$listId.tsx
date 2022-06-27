@@ -9,9 +9,11 @@ import Modal_Anime from "../components/modal/modal_anime";
 
 export default function List() {
     let [listAnime, setListAnime] = useState([]);
+    let [userName, letUserName] = useState()
+
     const listId = useParams();
     let id = listId.listId
-
+    
     fetch("http://localhost:3011/getAnimeOnList", {
       method: "POST",
       headers: {
@@ -27,11 +29,29 @@ export default function List() {
       .then((post) => {
         setListAnime(post)
       })
+
+
+      fetch("http://localhost:3011/searchUserName", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([{
+          id: id
+        }]),
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((post) => {
+          letUserName(post[0].login)
+          
+        });
     
     return (
         <div className="bg-smooth-pink">
             
-            <Navbar userId={id}/>
+            <Navbar userName={userName} userId={id}/>
 
             <img className="w-screen h-[500px] -z-10 -mb-32" src={require("public/imgs/Wallpaper.jpeg")} alt="Wallpaper" />
             <div className="h-full w-full flex justify-center items-center">
@@ -41,7 +61,7 @@ export default function List() {
                 </div>
             </div>
 
-            <h1 className="font-montserrat text-7xl flex justify-center">Anime List</h1>
+            <h1 className="font-montserrat text-7xl flex justify-center">{userName}'s List</h1>
 
             {/* Input thingy search bar */}
             <div className="flex justify-center items-center">

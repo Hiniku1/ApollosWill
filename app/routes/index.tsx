@@ -53,7 +53,6 @@ export default function Index() {
       })
       .then((post) => {
         if (post) {
-          console.log(post.id)
           setLoginId(post);
           navigate("/home/" + post)
 

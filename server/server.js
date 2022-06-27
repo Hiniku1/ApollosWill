@@ -26,7 +26,6 @@ app.use(cors());
 app.post("/searchUserName", async (req, res) => {
   const conn = await pool.getConnection();
   try {
-    console.log(req.body[0].id)
     
     const searchUserName = await conn.query(
       "SELECT * from User WHERE id = ?",
@@ -218,7 +217,7 @@ app.post("/searchAnimeOnList", async (req, res) => {
   try {
 
     console.log(req.body.userId)
-
+    
     const getList = await conn.query(
       "SELECT * FROM User_List WHERE (id_anime = ? AND id_user = ?)",
       [req.body.id, req.body.userId]

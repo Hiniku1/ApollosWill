@@ -16,6 +16,7 @@ export default function Navbar({userName, userId}: any ) {
                     <div className="flex w-[130px] h-[130px] bg-smooth-blue items-center rounded-3xl justify-center mt-12 mr-10 z-10">
                         <Link to={"/list/" + userId}><img className="rounded-3xl w-[100px]" src={require("public/imgs/Icon.jpg")} alt="Icon"/></Link>
                     </div>
+                    <Link to={"/"}  className="mr-4">Logout</Link>
                 </div>
             </div>
         </div>
